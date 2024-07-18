@@ -1,0 +1,320 @@
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a  class="brand">
+  </a>
+  <ul class="side-menu top">
+    <li >
+      <a href="/home">
+        <i class='bx bxs-dashboard' (click)="goHome()" ></i>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li >
+      <a href="/profile" >
+        <i class='bx bxs-user' ></i>
+        <span class="text">Profile</span>
+      </a>
+    </li>
+    <li  class="active" >
+      <a href="/administration">
+        <i class='bx bxs-folder' ></i>
+        <span class="text">Administration</span>
+      </a>
+    </li>
+
+
+  </ul>
+  <ul class="side-menu">
+
+    <li>
+      <a (click)="logout()" class="logout">
+        <i class='bx bxs-log-out-circle' ></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+
+
+
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i (click)="addToggle()" class='bx bx-menu' ></i>
+
+    <a  class="brand">
+      <span class="text"><h3> AES Monitoring Platform</h3></span>
+
+    </a>
+    <form></form>
+      <div class="menuitems">
+    <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+
+  </div>
+  </nav>
+  <!-- NAVBAR -->
+
+
+  <!-- MAIN -->
+
+
+  <main>
+    <div class="head-title">
+      <div class="left">
+
+       <h1>Managing Teams</h1>
+
+        <ul class="breadcrumb">
+          <li>
+            <a >Home</a>
+
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a >Administration</a>
+          </li>
+
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a class="active" >Team Management</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+
+  </main>
+  <!-- MAIN -->
+
+</section>
+
+<br>
+<div class="permissiontable">
+  <div class="goBack" (click)="goBack()" *ngIf="isShowInfo" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"/><path fill="currentColor" d="M7.16 10.972A7 7 0 0 1 19.5 15.5a1.5 1.5 0 1 0 3 0c0-5.523-4.477-10-10-10a9.973 9.973 0 0 0-7.418 3.295L4.735 6.83a1.5 1.5 0 1 0-2.954.52l1.042 5.91c.069.391.29.74.617.968c.403.282.934.345 1.385.202l5.644-.996a1.5 1.5 0 1 0-.52-2.954l-2.788.491Z"/></g></svg>
+  </div>
+<mat-tab-group class="custom-tab-group"  [selectedIndex]="selectedTabIndex">
+<mat-tab label="Teams"  *ngIf="!isShowInfo">
+  <ng-template matTabContent>
+    <br>
+    <div class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-2">Name</div>
+
+          <div class="col col-3">Members</div>
+          <div class="col col-4">Action</div>
+
+        </li>
+        <li class="table-row" (click)=" seeUsers()" *ngFor="let team of teams">
+          <div class="col col-2" data-label="Customer Name"> {{ team.teamName }}</div>
+
+          <div class="col col-3" data-label="Customer Name"> {{ team.users.length }} </div>
+              
+
+
+          <div class="col col-4-1" data-label="Payment Status">
+            <div class="lemenuaction">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+
+                <button mat-menu-item (click)="getTeamName(team.teamName) ; openDialog7()"  >
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit Team</span>
+                  </button>
+                <button mat-menu-item  (click)="getTeamName(team.teamName) ; openDialog5()">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete Team</span>
+                  </button>
+                <button mat-menu-item (click)="showTeamInfo() ; getTeamsUsers(team.id)" >
+                    <mat-icon>folder</mat-icon>
+                    <span>See Team Information</span>
+                </button>
+
+
+              </mat-menu>
+            </div>
+          </div>
+
+        </li>
+
+      </ul>
+    </div>
+    <button class="btn2" #add (click)="openDialog2()">+</button>
+
+  </ng-template>
+</mat-tab>
+
+<mat-tab label="Team Information" *ngIf="isShowInfo">
+
+  <ng-template matTabContent>
+
+    <br>
+    <div class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-2">Username</div>
+          <div class="col col-2">Email</div>
+
+          <div class="col col-3">Role</div>
+
+          <div class="col col-4">Action</div>
+
+        </li>
+        <li class="table-row"  *ngFor="let user of teamUsers">
+          <div class="col col-2" data-label="Customer Name">{{user.firstname}} {{user.lastname}}</div>
+          <div class="col col-2" data-label="Customer Name">{{user.email}}</div>
+          <div class="col col-3" data-label="Customer Name">{{user.role}}</div>
+
+
+
+
+          <div class="col col-4" (click)="getUserInfoToRemove(  user.id);openDialog6()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="red" d="M12 4c-4.419 0-8 3.582-8 8s3.581 8 8 8s8-3.582 8-8s-3.581-8-8-8zm3.707 10.293a.999.999 0 1 1-1.414 1.414L12 13.414l-2.293 2.293a.997.997 0 0 1-1.414 0a.999.999 0 0 1 0-1.414L10.586 12L8.293 9.707a.999.999 0 1 1 1.414-1.414L12 10.586l2.293-2.293a.999.999 0 1 1 1.414 1.414L13.414 12l2.293 2.293z"/></svg>
+
+          </div>
+
+        </li>
+
+      </ul>
+    </div>
+    <button class="btn2" #add (click)="openDialog3()">+</button>
+
+  </ng-template>
+</mat-tab>
+
+</mat-tab-group>
+</div>
+
+<div class="dialog-container" *ngIf="showDialog2" (click)="getAllUsers()" >
+  <div class="dialog-content" >
+    <h2 class="dialog-title">New Team</h2>
+    <br>
+    <input id="teamname" text="Team Name" placeholder="Team Name"[(ngModel)]="newTeamName">
+    <br>
+    <br>
+
+  <h2 class="dialog-title">Select Users to Add</h2>
+
+  <div class="multiselect-dropdown" >
+      <ng-multiselect-dropdown
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="usersSelected"
+        (onSelect)="onInstanceSelect();getUsers()"
+        (onSelectAll)="onInstanceSelectAll();getUsers()"
+        (onDeSelect)="onInstanceSelect();getUsers()"
+        (onDeSelectAll)="onInstanceDeSelectAll()"
+
+        >
+      </ng-multiselect-dropdown>
+    </div>
+
+    <div class="dialog-buttons">
+      <button mat-button (click)="addTeam()">Add</button>
+      <button mat-button (click)="closeDialog2()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="dialog-container" *ngIf="showDialog3" (click)="getAllUsers()" >
+  <div class="dialog-content">
+    <h2 class="dialog-title">Add User to Team</h2>
+    <br>
+    <div class="multiselect-dropdown" style="width:100%">
+      <ng-multiselect-dropdown
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedUsers"
+        (onSelect)="onInstanceSelect();getUsers()"
+        (onSelectAll)="onInstanceSelectAll();getUsers()"
+        (onDeSelect)="onInstanceSelect();getUsers()"
+        (onDeSelectAll)="onInstanceDeSelectAll()"
+
+        >
+      </ng-multiselect-dropdown>
+    </div>
+    <div class="dialog-buttons">
+      <button mat-button (click)=" addUsers()">Add</button>
+      <button mat-button (click)="closeDialog3()">Discard</button>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="dialog-container" *ngIf="showDialog5" >
+  <div class="dialog-content" >
+    <h2 class="dialog-title">Delete Confirmation</h2>
+
+    <label>Are you sure you want to remove this Team</label>
+
+
+
+    <div class="dialog-buttons">
+      <button mat-button (click)="deleteTeam()" >Delete</button>
+      <button mat-button (click)="closeDialog5()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-container" *ngIf="showDialog6" >
+  <div class="dialog-content" >
+    <h2 class="dialog-title">Delete Confirmation</h2>
+
+    <label>Are you sure you want to remove this User from This Team</label>
+
+
+
+    <div class="dialog-buttons">
+      <button mat-button (click)="deleteUser()" >Delete</button>
+      <button mat-button (click)="closeDialog6()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-container" *ngIf="showDialog7" >
+  <div class="dialog-content" >
+    <h2 class="dialog-title">Editing Team Information</h2>
+    <br>
+
+    <div *ngIf="selectedTeam">
+      <p>Current Team Name: {{ selectedTeam.teamName }}</p>
+    </div>
+
+    <input id="teamname" type="text" [(ngModel)]="selectedTeam.teamName" placeholder="New Team Name" required>
+
+    <div class="dialog-buttons">
+      <button mat-button (click)="editTeam()">Edit</button>
+
+      <button mat-button (click)="closeDialog7()">Cancel</button>
+    </div>
+  </div>
+</div>
+<!-- <input id="teamname" text="Username" placeholder="New Team Name" [(ngModel)]="newTeamName" >
+    <div class="dialog-buttons">
+      <button mat-button (click)="editTeam()">Edit</button>
+      <button mat-button (click)="closeDialog7()">Cancel</button>
+    </div>
+  </div>   -->
+    
+
+  
+
+
+<!-- CONTENT -->
+<div class="toasts">
+<div class="toast3" id="toast-message3"></div>
+
+<div class="toast4" id="toast-message4"></div>
+<div class="toast2" id="toast-message2"></div>
+<div class="toast5" id="toast-message5"></div>
+<div class="toast6" id="toast-message6"></div>
+
+</div>

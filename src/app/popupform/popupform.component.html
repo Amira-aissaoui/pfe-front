@@ -1,0 +1,88 @@
+<div class="overlay-container" >
+  <form class="overlay" >
+    <span class="material-icons" id="close" (click)="closeModal()">close</span>
+
+    <div class="contenuelpopup">
+   
+<br>
+    <h2>Project Description</h2>
+    <label><b>Project Name</b></label>
+    <br>
+    <input type="text" class="ipaddr" name="projectName" [(ngModel)]="projectName" placeholder="Name">
+    <br>
+    <br>
+    <label><b>Select wanted process</b></label>
+    <br>
+    <input type="checkbox" id="monitoring" name="monitoring" value="monitoring" (click)="monitoringMode()" [(ngModel)]="monitoring">
+    <label for="monitoring"> Monitoring</label><br>
+    <input type="checkbox" id="alerting" name="alerting" value="alerting" (click)="alertMode()" [(ngModel)]="alerting">
+    <label for="alerting"> Alerting</label><br>
+    <br>
+    <label><b>App type</b></label>
+    <br>
+
+
+    <mat-chip-listbox name="appType" [(ngModel)]="appType" >
+      <mat-chip-option  selected>Monolithic app</mat-chip-option>
+      <mat-chip-option>Microservices Based app</mat-chip-option>
+
+    </mat-chip-listbox>
+    <br>
+    <label><b>Visibility</b></label>
+    <br>
+
+
+    <mat-chip-listbox name="visibility" [(ngModel)]="visibility" >
+      <mat-chip-option  selected>Private</mat-chip-option>
+      <mat-chip-option>Public</mat-chip-option>
+
+    </mat-chip-listbox>
+
+
+    <br>
+    <label><b>Enter Ip Address and Port</b></label>
+    <div *ngFor="let input of inputs; let i=index" >
+      <input type="text"  class="ipaddr" *ngIf="appType === 'Microservices Based app'" name="microservicename"   [(ngModel)]="microserviceNames[i]" placeholder="Microserice Name"  [hidden]="!connectivityStatus[i]">
+
+      <input #ipaddr class="ipaddr" placeholder="xxx.xxx.xxx.xx" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
+        name="ipaddr" [(ngModel)]="input.ipaddr" id="ipaddr"  [hidden]="connectivityStatus[i] && appType === 'Microservices Based app'">
+    
+      <input #port class="port" placeholder="Port" type="text" minlength="2" maxlength="6" size="6" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
+        name="port" [(ngModel)]="input.port" id="port" [hidden]="connectivityStatus[i] && appType === 'Microservices Based app'">
+        <button class="btn"  (click)="testConnectivity(input.ipaddr, input.port,i)"  [hidden]="connectivityStatus[i]" id="test">Test Connectivity</button>
+
+        <button class="btn3"  (click)="removeInput(input,i)"  *ngIf="appType === 'Microservices Based app'" #rmv>Remove</button>
+        <svg xmlns="http://www.w3.org/2000/svg"  *ngIf="connectivityfailed[i]"  color="red"  class="failicon" width="50" height="35" viewBox="0 0 50 32"><path fill="currentColor" d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2zm0 26C9.4 28 4 22.6 4 16S9.4 4 16 4s12 5.4 12 12s-5.4 12-12 12z"/><path fill="currentColor" d="M21.4 23L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="failed" *ngIf="connectivityStatus[i]"  class="failicon" color="green" width="32" height="34" viewBox="0 0 24 24"><path fill="currentColor" d="m2.394 13.742l4.743 3.62l7.616-8.704l-1.506-1.316l-6.384 7.296l-3.257-2.486zm19.359-5.084l-1.506-1.316l-6.369 7.279l-.753-.602l-1.25 1.562l2.247 1.798z"/></svg>
+
+        <br>
+
+
+<br>
+    </div>
+    <button class="btn2"  (click)="addInput()"  *ngIf="appType === 'Microservices Based app'" #add>+</button>
+
+    <br>
+    
+    
+
+
+
+    
+
+    <br>
+<div class="btnproj">
+    <button class="learn-more" (click)="saveMicroserviceNames() ; onSubmit()" *ngIf="this.StatusHealthy">
+      <span class="circle" aria-hidden="true">
+        <span class="icon arrow"></span>
+      </span>
+    </button>
+  </div>
+
+</div>
+    
+  </form>
+
+  <div class="toast" id="toast-message"></div>
+
+</div>

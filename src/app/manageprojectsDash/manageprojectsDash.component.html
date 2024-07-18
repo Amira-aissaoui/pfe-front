@@ -1,0 +1,228 @@
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a class="brand"></a>
+  <ul class="side-menu top">
+    <li>
+      <a href="/home">
+        <i class='bx bxs-dashboard'></i>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="/profile">
+        <i class='bx bxs-user'></i>
+        <span class="text">Profile</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a (click)="logout()" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i (click)="addToggle()" class='bx bx-menu'></i>
+    <a class="brand">
+      <span class="text"><h3>AES Monitoring Platform</h3></span>
+    </a>
+    <form></form>
+    <div class="menuitems">
+      <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+    </div>
+  </nav>
+  <!-- NAVBAR -->
+  <!-- MAIN -->
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Projects Dashboard</h1>
+        <ul class="breadcrumb">
+          <li (click)="goHome()">
+            <a>Home</a>
+          </li>
+          <li><i class='bx bx-chevron-right'></i></li>
+          <li routerLink="/home">
+            <a >projects</a>
+          </li>
+          <li><i class='bx bx-chevron-right'></i></li>
+          <li>
+            <a class="active">Projects Dashboard</a>
+          </li>
+        </ul>
+        <!--<button mat-menu-item  (click)="generatePDF()" >
+          <mat-icon>download</mat-icon>
+          </button> -->
+        
+      </div>
+    </div>
+    <!-- Widgets for Project Counts -->
+    <div class="widget-container">
+      <div class="widget">
+        <div class="widget-header">
+          <mat-icon class="widget-icon">assignment</mat-icon>
+          <h2>Total Projects</h2>
+        </div>
+        <div class="widget-content">
+          <h3>{{ totalProjects }}</h3>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="widget-header">
+          <mat-icon class="widget-icon">monitor</mat-icon>
+          <h2>Monitoring Projects</h2>
+        </div>
+        <div class="widget-content">
+          <h3>{{ monitoringProjects }}</h3>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="widget-header">
+          <mat-icon class="widget-icon">notifications_active</mat-icon>
+          <h2>Alerting Projects</h2>
+        </div>
+        <div class="widget-content">
+          <h3>{{ alertingProjects }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-grid">
+      <!-- Project Visibility Distribution Chart -->
+      <div class="chart-container large">
+        <div class="chart-header">
+          <h2>Project Visibility Distribution</h2>
+        </div>
+        <div class="chart-body">
+          <apx-chart id="chart1"
+            *ngIf="chartOptions.series && chartOptions.chart && chartOptions.responsive"
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [labels]="chartOptions.labels"
+            [responsive]="chartOptions.responsive"
+            [colors]="['#00AE4E', '#F79027', '#A1CD3C', '#2BC3EA']"
+           
+
+          ></apx-chart>
+        </div>
+      </div>
+      
+      <!-- Bar Chart - Projects Distribution by Monitoring and Alerts -->
+      <div class="chart-container large">
+        <div class="chart-header">
+          <h2>Projects Distribution</h2>
+        </div>
+        <div class="chart-body">
+          <apx-chart id="chart2"
+            *ngIf="chartOptions2.series && chartOptions2.chart && chartOptions2.dataLabels && chartOptions2.plotOptions && chartOptions2.yaxis && chartOptions2.xaxis && chartOptions2.fill && chartOptions2.title"
+            [series]="chartOptions2.series"
+            [chart]="chartOptions2.chart"
+            [dataLabels]="chartOptions2.dataLabels"
+            [plotOptions]="chartOptions2.plotOptions"
+            [yaxis]="chartOptions2.yaxis"
+            [xaxis]="chartOptions2.xaxis"
+            [fill]="chartOptions2.fill"
+            [title]="chartOptions2.title"
+            [colors]="['#F79027', '#00AE4E', '#A1CD3C', '#2BC3EA']"
+          ></apx-chart>
+        </div>
+      </div>
+        <!-- Application Type Distribution Chart -->
+        <div class="chart-container large">
+          <div class="chart-header">
+            <h2>Application Type Distribution</h2>
+          </div>
+          <br>
+          <div class="chart-body">
+            <apx-chart id="chart3"
+              [series]="chartOptions1.series ?? []"
+              [chart]="chartOptions1.chart ?? { type: 'pie'}"
+              [labels]="chartOptions1.labels ?? []"
+              [fill]="chartOptions1.fill ?? { type: 'solid' }"
+              [dataLabels]="chartOptions1.dataLabels ?? { enabled: false }"
+              [responsive]="chartOptions1.responsive ?? []"
+              [colors]="['#00AE4E', '#F79027', '#A1CD3C', '#2BC3EA']"
+            ></apx-chart>
+          </div>
+        </div>
+          <!-- App Type VS Visibility-->
+          <div class="chart-container large">
+            <div class="chart-header">
+              <h2>App Type VS Visibility</h2>
+            </div>
+            <div class="chart-body">
+          <apx-chart
+          [series]="chartOptions5.series ?? []"
+          [chart]="chartOptions5.chart?? { type: 'bar' }"
+          [dataLabels]="chartOptions5.dataLabels ?? {}"
+          [plotOptions]="chartOptions5.plotOptions ?? {}"
+          [xaxis]="chartOptions5.xaxis ?? {}"
+          [colors]="[ '#00AE4E','#F79027', '#A1CD3C', '#2BC3EA']"
+        ></apx-chart>
+      </div>
+        </div>
+    
+      <!-- Monitoring Projects by App Type -->
+      <div class="chart-container large">
+        <div class="chart-header">
+          <h2>Monitoring Projects by App Type</h2>
+        </div>
+        <div class="chart-body">
+          <apx-chart id="chart4"
+            *ngIf="chartOptions3.series && chartOptions3.chart && chartOptions3.dataLabels && chartOptions3.plotOptions && chartOptions3.yaxis && chartOptions3.xaxis && chartOptions3.fill && chartOptions3.title"
+            [series]="chartOptions3.series"
+            [chart]="chartOptions3.chart"
+            [dataLabels]="chartOptions3.dataLabels"
+            [plotOptions]="chartOptions3.plotOptions"
+            [yaxis]="chartOptions3.yaxis"
+            [xaxis]="chartOptions3.xaxis"
+            [fill]="chartOptions3.fill"
+            [title]="chartOptions3.title"
+            [colors]="[ '#00AE4E', '#A1CD3C', '#2BC3EA']"
+          ></apx-chart>
+        </div>
+      </div>
+      <!-- Alerts Projects Distribution by App Type -->
+      <div class="chart-container large">
+        <div class="chart-header">
+          <h2>Alerts Projects by App Type</h2>
+        </div>
+        <div class="chart-body">
+          <apx-chart
+            *ngIf="chartOptions4.series && chartOptions4.chart && chartOptions4.dataLabels && chartOptions4.plotOptions && chartOptions4.yaxis && chartOptions4.xaxis && chartOptions4.fill && chartOptions4.title"
+            [series]="chartOptions4.series"
+            [chart]="chartOptions4.chart"
+            [dataLabels]="chartOptions4.dataLabels"
+            [plotOptions]="chartOptions4.plotOptions"
+            [yaxis]="chartOptions4.yaxis"
+            [xaxis]="chartOptions4.xaxis"
+            [fill]="chartOptions4.fill"
+            [title]="chartOptions4.title"
+            [colors]="['#F79027', '#00AE4E', '#A1CD3C', '#2BC3EA']"
+          ></apx-chart>
+        </div>
+      </div>
+      <div class="floating-container" >
+        <div class="floating-button">+</div>
+        <div class="element-container">
+          <span class="float-element">
+            <div id="dashboard-content" #myElement>
+            </div>
+      <button (click)="printPage() "></button>
+      <i class="material-icons" (click)="printPage() ">file_download</i>
+          </span>
+      
+        
+      
+        </div>
+      </div>
+  </div>
+  </main>
+  <!-- MAIN -->
+</section>

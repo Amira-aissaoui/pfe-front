@@ -1,0 +1,484 @@
+<div class="site-wrap">
+  <nav class="site-nav">
+    <div class="name"><br>
+      Select The Metric
+    </div>
+    
+    <br>
+    <br>
+    <br>
+    <ul>
+      
+      <li>
+        <a (click)="showInfraSubMenu()" [ngClass]="{'activesub': true}" [ngClass]="{'activesub': true}" *ngIf="deployment!='VM' || port == '9100'">Node Exporter Metrics</a>
+          <ul class="sub-menu" *ngIf="isInfraSubMenuOpen">
+            <li><a (click)="showChartMenu();getSelectedMetric('filespaceavail','Filesystem space available',false)">Filesystem space available</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('cpubusy','CPU Busy',false)">CPU Busy</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('sysload','Busy state of all CPU cores together (5 min average)',false)">Busy state of all CPU cores together (5 min average) </a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('ramused','RAM Used',false)">Ram Used</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('swapused','SWAP Used',false)">SWAP Used</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('rootfs','Root FS Used',false)">Root FS Used</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('cpucores','CPU Cores',false)">CPU Cores</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('swaptotal','SWAP Total',false)">SWAP Total</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('diskiops','Disk IOps',false)">Disk IOps</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('ioutil','I/O Utilization',false)">I/O Utilization</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('nodescrapetime','Node Exporter Scrape Time',false)">Node Exporter Scrape Time</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('tcpcnx','TCP Connections',false)">TCP Connections</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('netstatinoctet','Netstat IP In Octets',false)">Netstat IP In Octets</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('netstatoutoctet','Netstat IP Out Octets',false)">Netstat IP Out Octets</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('udpout','UDP Out',false)">UDP Out</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('udpin','UDP In',false)">UDP In</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('udperrors','UDP Errors',false)">UDP Errors</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('mtu','MTU',false)">MTU</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('networkop','Network Operational Status',false)">Network Operational Status</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('queuelen','Queue Length',false)">Queue Length</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('networkspeed','Network Speed',false)">Network Speed</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('arpent','ARP Entries',false)">ARP Entries</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('filenodesize','File Nodes Size',false)">File Nodes Size</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('temp','Hardware temperature monitor',false)">Hardware temperature monitor</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('timeslices','Schedule timeslices executed by each cpu',false)">Schedule timeslices executed by each cpu</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('processrunning','Processes in Running State',false)">Processes in Running State</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('kernelstack','Memory Kernel Stack',false)">Memory Kernel Stack</a></li>
+            <li><a (click)="showChartMenu();getSelectedMetric('memodynamic','Per CPU Memory Allocated Dynamically',false)">Per CPU Memory Allocated Dynamically</a></li>
+
+
+        <!-- Add more basic application resource metrics here -->
+        </ul>
+      </li>
+<br>
+      <li>
+     
+      <a (click)="showCustomizedMetrics(); getTheQueries(parcoursms)" [ngClass]="{'active': true}">Customized metric</a>
+      <ul class="sub-menu" *ngIf="isCustomizedMetrics">
+        <ng-container *ngFor="let category of categorizedQueriesKeys">
+          <ng-container *ngIf="category !== 'Custom' && categorizedQueries[category].length > 0">
+            <li>
+              <b><a>{{ category }}</a></b>
+              <ul class="sub-menu">
+                <li *ngFor="let query of categorizedQueries[category]">
+                  <a (click)="showChartMenu(); getSelectedMetric('', query, false)">{{ query }}</a>
+                </li>
+              </ul>
+            </li>
+          </ng-container>
+        </ng-container>
+    
+        <!-- VM Category -->
+        <ng-container *ngIf="categorizedQueries['VM'] && categorizedQueries['VM'].length > 0">
+          <li>
+            <b><a>VM</a></b>
+            <ul class="sub-menu">
+              <li *ngFor="let query of categorizedQueries['VM']">
+                <a (click)="showChartMenu(); getSelectedMetric('', query, false)">{{ query }}</a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+        <!-- Cluster Category -->
+        <ng-container *ngIf="categorizedQueries['Cluster'] && categorizedQueries['Cluster'].length > 0">
+          <li>
+            <b><a>Cluster</a></b>
+            <ul class="sub-menu">
+              <li *ngFor="let query of categorizedQueries['Cluster']">
+                <a (click)="showChartMenu(); getSelectedMetric('', query, false)">{{ query }}</a>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+      </ul>
+    </li>
+    
+
+
+      <br>
+
+      <li>
+        <a (click)="showBasicSubMenu()" [ngClass]="{'active': true}" #basic>Basic Metrics</a>
+        <ul class="sub-menu" *ngIf="isBasicSubMenuOpen">
+          <br>
+          <li>
+            <a (click)="showAppSubMenu()" [ngClass]="{'active': true}">Application Resources</a>
+            <ul class="sub-menu" *ngIf="isAppSubMenuOpen">
+              
+              <li><a (click)="showChartMenu();getSelectedMetric('starttime','Start time',false)">Start time</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('uptime','Up time',false)">Up time</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('status','Instance Status',false)">Instance Status</a></li>
+                              <!-- Add more basic application resource metrics here -->
+            </ul>
+          </li>
+          <li>
+            <a (click)="showVMSubMenu()" [ngClass]="{'activesub': true}" *ngIf="deployment=='VM'">VM Infrastructure Ressources</a>
+              <ul class="sub-menu" *ngIf="isVMSubMenu">
+                <li><a (click)="showChartMenu();getSelectedMetric('cachesize','Cache Size',false)">Cache Size</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('jdbcconnectionsactive','Jdbc Connections Active',false)">Jdbc Connections Active </a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('vmmemototalused','VM Memory Total Used Window in 1h',false)">VM Memory Total Used Window in 1h</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('vmcpuload','VM Cpu Load X100 Window in 1h',false)">VM Cpu Load X100 Window in 1h</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('vmmemopoolsmetaspace','VM Memory Pools Metaspace Used Window in 1h',false)">VM Memory Pools Metaspace Used Window in 1h</a></li>
+            <!-- Add more basic application resource metrics here -->
+            </ul>
+          </li>
+          
+          <br>
+         <!-- 
+          <li>
+            <a (click)="showDBSubMenu()" [ngClass]="{'active': true}">DataBase Ressources</a>
+            <ul class="sub-menu" *ngIf="isDBSubMenuOpen">
+              <li><a (click)="showChartMenu();getSelectedMetric('starttime','Start time',false)">Start time</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('healthcheck','Health Check',false)">Health Check</a></li>
+            </ul>
+          </li>
+        -->
+
+          <li>
+            <a (click)="showServerSubMenu()" [ngClass]="{'active': true}">Server and Network Health</a>
+            <ul class="sub-menu" *ngIf="isServerSubMenuOpen">
+              <li><a (click)="showChartMenu();getSelectedMetric('httpavg','HTTP Server AVG Requests',false)">HTTP Server AVG Requests</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('diskspace','Disk Space',false)">Disk Space</a></li>
+                                <!-- Add more advanced JVM metrics here -->
+            </ul>
+          </li>
+
+          <br>
+          
+          <li>
+            <a (click)="showJVMSubMenu()" [ngClass]="{'active': true}">JVM Metrics</a>
+            <ul class="sub-menu" *ngIf="isJVMSubMenuOpen">
+              <li><a (click)="showChartMenu();getSelectedMetric('heapmemo','Heap memory usage',false)">Heap memory usage</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('nonheap','Non-heap memory usage',false)">Non-heap memory usage</a></li>
+                              <!-- Add more basic JVM metrics here -->
+            </ul>
+          </li>
+          <!-- Add more basic menu items and their corresponding submenus here -->
+        </ul>
+      </li>
+    
+      <li>
+        <br>
+
+        <a (click)="showAdvancedSubMenu()" [ngClass]="{'active': true}" id="advanced">Advanced Metrics</a>
+        <ul class="sub-menu" *ngIf="isAdvancedSubMenuOpen">
+          <br>
+          <li>
+            <a (click)="showAdvancedAppSubMenu()" [ngClass]="{'active': true}">Application Resources</a>
+            <ul class="sub-menu" *ngIf="isAdvancedAppSubMenuOpen">
+              <li><a (click)="showChartMenu(); getSelectedMetric('httprequests', 'HTTP requests',false)">HTTP requests</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('coverage','Code Coverage',true)">Code Coverage</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('dup','Code Duplication',true)">Code Duplication</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('vun','Security Vunerabilites',true)">Security Vunerabilites</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('bugs','Bugs',true)">Bugs</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('smells','Code Smells',true)">Code Smells</a></li>
+
+              <!-- Add more advanced application resource metrics here -->
+            </ul>
+          </li>
+<br>
+          <li>
+            <a (click)="showVMSubMenu()" [ngClass]="{'activesub': true}" *ngIf="deployment=='VM'">VM Infrastructure Ressources</a>
+              <ul class="sub-menu" *ngIf="isVMSubMenu">
+                <li><a (click)="showChartMenu();getSelectedMetric('hikaricpconnectionstimeout','Hikaricp Connections Timeout Total',false)">Hikaricp Connections Timeout Total</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('processfilesopenfiles','Process Files OpenFiles',false)">Process Files OpenFiles</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('hikaricpconnections','Hikaricp Connections',false)">Hikaricp Connections</a></li>
+                              <!-- Add more basic application resource metrics here -->
+            </ul>
+          </li>
+
+         <br>
+<!--
+          <li>
+            <a  (click)="showInfraSubMenu()" [ngClass]="{'activesub': true}" *ngIf="deployment!='VM'">K8s Cluster Infrastructure Ressources</a>
+    
+              <ul class="sub-menu" *ngIf="isInfraSubMenuOpen" >
+                <a  (click)="showClusterSubMenu()" [ngClass]="{'active': true}">Cluster Health</a>
+                <div *ngIf="isClusterHealth">
+    
+                <li><a (click)="showChartMenu();getSelectedMetric('clusterpodusage','Pod Usage',true)" > Pod Usage</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('clustercpuusage','CPU Usage',true)" > CPU Usage</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('clustermemoryusage','Memory Usage',true)" >Memory Usage</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('clusterdiskusage','Disk Usage',true)" >Disk Usage</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('clusterpodcapacity','Pod Capacity',true)" > Pod Capacity</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('clustercpucapacity','CPU Capacity',true)" > CPU Capacity</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('clustermemorycapacity','Memory Capacity',true)" > Memory Capacity</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('clusterdiskcapacity','Disk Capacity',true)" > Disk Capacity</a></li>
+                </div>
+              </ul>
+    
+                 <ul class="sub-menu" *ngIf="isInfraSubMenuOpen" >
+                <a  (click)="showDeploymentSubMenu()" [ngClass]="{'active': true}">Deployments</a>
+                <div *ngIf="isDeployment">
+    
+                <li><a (click)="showChartMenu();getSelectedMetric('replicauptodate','Replicas Up to date',true)" > Replicas Up to date</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('replica','Replicas',true)" > Replicas</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('replicaupdated','Replicas Updated',true)" >Replicas Updated</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('replicaunavailable','Replicas Unavailable',true)" >Replicas Unavailable</a></li>
+                </div>
+              </ul>
+    
+              <ul class="sub-menu" *ngIf="isInfraSubMenuOpen" >
+                <a  (click)="showNodeSubMenu()" [ngClass]="{'active': true}">Node</a>
+                <div *ngIf="isNode">
+    
+                <li><a (click)="showChartMenu();getSelectedMetric('nbnodes','Number of nodes',true)" > Number of nodes</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('nodesoutofdisk','Nodes out of Disk',true)" > Nodes out of Disk</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('nodesunavailable','Nodes Unavailable',true)" > Nodes Unavailable</a></li>
+                </div>
+              </ul>
+              <ul class="sub-menu" *ngIf="isInfraSubMenuOpen" >
+                <a  (click)="showPodSubMenu()" [ngClass]="{'active': true}">Pods</a>
+                <div *ngIf="isPods">
+    
+                <li><a (click)="showChartMenu();getSelectedMetric('podsrunning','Pods Running',true)" > Pods Running</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('podspending','Pods Pending',true)" > Pods Pending</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('podsfailed','Pods Failed',true)" > Pods Failed</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('podsuccess','Pods Succeeded',true)" > Pods Succeeded</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('podsunkown','Pods Unknown',true)" > Pods Unknown </a></li>
+                </div>
+              </ul>
+              <ul class="sub-menu" *ngIf="isInfraSubMenuOpen" >
+                <a  (click)="showContainersSubMenu()" [ngClass]="{'active': true}">Containers</a>
+                <div *ngIf="isContainer">
+                <li><a (click)="showChartMenu();getSelectedMetric('containerrun','Containers Running',true)" > Containers Running</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('containerwait','Containers Waiting',true)" > Containers Waiting</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('containerrestart','Containers Restarted in the Last 30 mn',true)" > Containers Restarted in the Last 30 mn</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('containertermn','Containers Terminated',true)" > Containers Terminated</a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('containercpu','CPU cores requested By Containers',true)" > CPU cores requested By Containers </a></li>
+                <li><a (click)="showChartMenu();getSelectedMetric('containermemo','Memory requested By Containers',true)" > Memory requested By Containers </a></li>
+              </div>
+    
+              </ul>
+              <ul class="sub-menu" *ngIf="isInfraSubMenuOpen" >
+                <a  (click)="showJobsSubMenu()" [ngClass]="{'active': true}" >Jobs</a>
+                <div *ngIf="isJobs">
+                  <li><a (click)="showChartMenu();getSelectedMetric('jobsuccess','Jobs Succeeded',true)" > Jobs Succeeded </a></li>
+                  <li><a (click)="showChartMenu();getSelectedMetric('jobsfailed','Jobs Failed',true)" > Jobs Failed</a></li>
+    
+                </div>
+              </ul>
+            </li>
+          -->
+            <br>
+
+          <li>
+            <a (click)="showDBSubMenu()" [ngClass]="{'active': true}">DataBase Ressources</a>
+            <ul class="sub-menu" *ngIf="isDBSubMenuOpen">
+              <li><a (click)="showChartMenu();getSelectedMetric('jdbcmin','JDBC Min connections',false)">JDBC Min connections</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('jdbcmax','JDBC Max connections',false)">JDBC Max connections</a></li>
+                                                <!-- Add more advanced JVM metrics here -->
+            </ul>
+          </li>
+         <br>
+         
+          <li>
+            <a (click)="showServerSubMenu()" [ngClass]="{'active': true}">Server and Network Health</a>
+            <ul class="sub-menu" *ngIf="isServerSubMenuOpen">
+              <li><a (click)="showChartMenu();getSelectedMetric('topcpuusage','TOP CPU Usage',false)">TOP CPU Usage</a></li>
+              <!-- Add more advanced JVM metrics here -->
+            </ul>
+          </li>
+          <br>
+          
+          
+          <li>
+            <a (click)="showJVMSubMenu()" [ngClass]="{'active': true}">JVM Metrics</a>
+            <ul class="sub-menu" *ngIf="isJVMSubMenuOpen">
+              <li><a (click)="showChartMenu();getSelectedMetric('jvmtotal','JVM Total Memory Used in Bytes',false)">JVM Total</a></li>
+              <li><a (click)="showChartMenu();getSelectedMetric('cpujvm','CPU Usage',false)">CPU Usage</a></li>
+                              <!-- Add more advanced JVM metrics here -->
+            </ul>
+          </li>
+          <!-- Add more advanced menu items and their corresponding submenus here -->
+        </ul>
+      </li>
+ 
+    </ul>
+    
+
+   
+
+  </nav>
+
+
+  <!-- l charts -->
+
+
+  
+  <main >
+
+  <nav class="site-nav2" *ngIf="chartMenu">
+    <!-- <div class="name"><b>Step 2  Select Charts</b></div>-->
+
+      <ul>
+        <li>
+          <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+              <h2 >Bar Chart</h2>
+              <ngx-charts-bar-vertical 
+              
+              [view]="[200,200]"
+              [results]="saleData"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [gradient]="true">
+              </ngx-charts-bar-vertical>
+
+          </div>
+        </li>
+  
+
+          <li title="Gauge">
+              <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+                  <h2>Gauge Chart</h2>
+
+              <ngx-charts-gauge
+              [results]="saleData"
+              [legend]="false"
+              [view]="[300,200]" 
+              >
+                
+              </ngx-charts-gauge>
+              </div>
+          </li>
+            
+          <li>
+            <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+                <h2>Line Chart</h2>
+
+                <ngx-charts-line-chart
+                [results]="lineData"
+                [legend]="false"
+                [view]="[300,200]"
+                >
+      
+                </ngx-charts-line-chart>
+            </div>   
+
+        </li>
+         
+          <li>
+              <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+                  <h2>Horizontal Chart</h2>
+
+              <ngx-charts-bar-horizontal-stacked
+              [results]="horizdata"
+              [view]="[200,200]"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+      
+              ></ngx-charts-bar-horizontal-stacked>
+              </div>
+          </li>
+          <!-- <li>
+              <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+                  <h2>Stat Chart</h2>
+
+              <ngx-charts-linear-gauge
+              [view]="[200,200]"
+              [value]="value"
+              [previousValue]="previousValue"
+              [units]="units">
+            </ngx-charts-linear-gauge>
+              </div>
+          </li>-->
+          <li>
+              <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+                  <h2>XY Chart</h2>
+
+              <ngx-charts-bubble-chart
+              [results]="bubledata"
+              [view]="[200,200]"
+              [showYAxisLabel]="true"
+              [yAxis]="true">
+                
+              </ngx-charts-bubble-chart>
+              </div>
+          </li>
+          <li>
+              <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+                  <h2>Pie Chart</h2>
+
+              <ngx-charts-pie-chart 
+              [results]="saleData"
+              [legend]="false"
+              [view]="[200,200]"
+              >
+          </ngx-charts-pie-chart>
+              </div>
+          </li>
+     
+      </ul>
+  
+     
+  
+    </nav>
+
+    <header >
+      
+
+      <h1 class="title">Build your Own Dashboard</h1>
+
+
+      <div class="amira">
+        <button id="" (click)="nextMicroserviceBtn();resetSubMenus()" *ngIf="!showSaveButton && appType !== 'Monolithic app'">
+
+          <p id="">Next Microservice</p>
+            <div class="check-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                    <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                </svg>
+            </div>
+        </button>
+
+        <button  class="cancelbtn" (click)="submitBtn()" *ngIf="showSaveButton || appType == 'Monolithic app'">
+        Save
+            <div class="check-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                    <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                </svg>
+            </div>
+        </button>
+        <button  class="cancelbtn" (click)="goHome()">
+        Cancel
+         
+      </button>
+      </div>
+
+   
+
+  
+      <nav class="nav-tabs" id="nav-tabs" *ngIf="appType !== 'Monolithic app'">
+        <a *ngFor="let service of items; let i=index"
+           [ngClass]="{'activemic': i === parcoursms}"
+           (click)="parcoursms = i;saveTheMicDash()">
+           Microservice {{ i + 1 }}
+        </a>
+      </nav>
+
+
+      
+    </header>
+
+    <div class="container_win_l_drop" (dragover)="onDragOver($event)" (drop)="onDrop($event)" draggable="false">
+      <div class="content-columns" >
+        <div class="col">
+          <div draggable="false" class="dropbox" *ngFor="let column of columns"></div>
+        </div>
+
+      <div class="col">
+        <div draggable="true" class="dropbox" *ngFor="let column of columns"></div>
+      </div>
+      
+      <div class="col">
+        <div draggable="true" class="dropbox" *ngFor="let column of columns"></div>
+      
+      </div>
+    </div>
+  </div>
+
+  </main>
+
+</div>
+
+

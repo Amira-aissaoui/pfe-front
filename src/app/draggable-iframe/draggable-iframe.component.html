@@ -1,0 +1,345 @@
+
+
+<input type="checkbox" id="menu" name="menu" class="menu-checkbox" checked (click)="CloseSideMenu()">
+  
+  <div class="menu">
+      
+    <label class="menu-toggle" for="menu">Metrics</label>
+    <ul>
+      <li>
+          <label for="menu-1">Infrastructure resources </label>
+          <input type="checkbox" id="menu-1" name="menu-1" class="menu-checkbox">
+          <div class="menu">
+            <label class="menu-toggle" for="menu-1"><span>Toggle</span></label>
+            <ul>
+              <li>
+                
+                <a (click)="showSidebar = true;getSelectedMetric('cpu')" >
+                 
+                  
+                  CPU
+                </a>  
+           
+                
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('memory')"  >Memory</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('diskusage')" >Disk usage</a>
+              </li> 
+
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('networkusage')"  >Network usage</a>
+              </li> 
+          
+            </ul>
+          </div>
+        </li>
+        <li>
+          <label for="menu-2">Application metrics</label>
+          <input type="checkbox" id="menu-2" name="menu-2" class="menu-checkbox">
+          <div class="menu">
+            <label class="menu-toggle" for="menu-2"><span>Toggle2</span></label>
+            <ul>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('httprequests')" >HTTP requests</a>
+              </li>
+              <li>
+                <a  (click)="showSidebar = true;getSelectedMetric('errorrates')" >Error rates</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('responsetime')" >Response time</a>
+              </li>
+
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('uptime')" >Up Time</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('healthcheck')" >Health Check</a>
+              </li>
+              
+              <li>
+               
+                <a (click)="showSidebar = true;getSelectedMetric('buildstatus')" >Build Status</a>
+
+              </li>
+              <li>
+               
+                <a (click)="showSidebar = true;getSelectedMetric('builderrors')" >Build Errors</a>
+
+              </li>
+              <li>
+               
+                <a (click)="showSidebar = true;getSelectedMetric('buildtime')"  >Build Time</a>
+
+              </li>
+              <li>
+               
+                <a (click)="showSidebar = true;getSelectedMetric('jobstat')" >Job Status</a>
+
+              </li>
+              <li>
+               
+                <a (click)="showSidebar = true;getSelectedMetric('coverage')" >Code Coverage</a>
+
+              </li>
+              <li>
+               
+                <a (click)="showSidebar = true;getSelectedMetric('dup')" >Code Duplication</a>
+
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('vun')" >Security Vunerabilites</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('bugs')" >Bugs</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('smells')" >Code Smells</a>
+              </li>
+           
+
+            </ul>
+          </div>
+        </li>
+
+
+        <li>
+          <label for="menu-3">Database metrics</label>
+          <input type="checkbox" id="menu-3" name="menu-3" class="menu-checkbox">
+          <div class="menu">
+            <label class="menu-toggle" for="menu-3"><span>Toggle21</span></label>
+            <ul>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('jdbc')" >JDBC max connections</a>
+
+              </li>
+              <li>
+                <a  (click)="showSidebar = true;getSelectedMetric('performance')" >Database performance
+              </a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('responsetime')" >Response time</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('status')" >Status</a>
+              </li>
+           
+             
+
+            </ul>
+          </div>
+        </li>
+
+
+
+        <li>
+          <label for="menu-4">Server and network health</label>
+          <input type="checkbox" id="menu-4" name="menu-4" class="menu-checkbox">
+          <div class="menu">
+            <label class="menu-toggle" for="menu-4"><span>Toggle21</span></label>
+            <ul>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('serveruptime')" >Server uptime</a>
+              </li>
+              <li>
+                <a  (click)="showSidebar = true;getSelectedMetric('diskspace')" >Disk Space
+              </a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('topcpuusage')" >TOP CPU Usage
+                </a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('cpuanomaly')" >CPU Anomaly
+                </a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('builderrors')" >Security Vunerabilites</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('bugs')" >Bugs</a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+
+
+
+        <li>
+          <label for="menu-5">Container metrics</label>
+          <input type="checkbox" id="menu-5" name="menu-5" class="menu-checkbox">
+          <div class="menu">
+            <label class="menu-toggle" for="menu-5"><span>Toggle21</span></label>
+            <ul>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('cpuserver')" >CPU</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('codedup')" >Code Duplication
+              </a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('codesmells')">Code Smells</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('secvun')" >Security Vunerabilites</a>
+              </li>
+              <li>
+                <a (click)="showSidebar = true;getSelectedMetric('contbugs')" >Bugs</a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+
+
+
+
+
+
+        </ul>
+        </div>
+        
+  
+        
+
+
+<div class="sidebar" *ngIf="showSidebar" >
+  <div class="container" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+      <iframe class="timeseries" [src]="setPanelUrl('28')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+      <iframe class="gauge" [src]="setPanelUrl('8')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+      <iframe class="bargauge" [src]="setPanelUrl('26')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+      <iframe class="linear" [src]="setPanelUrl('6')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+      <iframe class="timeseries" [src]="setPanelUrl('24')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div> 
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+      <iframe class="stat" [src]="setPanelUrl('4')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+  </div>
+
+   <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+    <iframe class="stat" [src]="setPanelUrl('22')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+   </div>  
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+
+      <iframe class="state-timeline" [src]="setPanelUrl('20')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+      <iframe class="xychart" [src]="setPanelUrl('18')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+      <iframe class="histogram" [src]="setPanelUrl('16')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+      <iframe class="state-timeline" [src]="setPanelUrl('14')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+      <iframe class="timeseries" [src]="setPanelUrl('12')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+        
+    <div draggable="true" class="box" (dragstart)="onDragStart($event)">
+      <iframe class="piechart" [src]="setPanelUrl('10')" width="250" height="200" frameborder="0" loading="lazy"></iframe>
+    </div>
+
+
+</div>
+</div>
+
+
+<div class="container_win_l_drop" (dragover)="onDragOver($event)" (drop)="onDrop($event)" >
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+     <div draggable="true" class="dropbox" (dragstart)="onDragStart($event)" cdkDrag ></div>
+
+</div>
+
+<svg class="lp" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg" *ngIf="saving">
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000" />
+      <stop offset="100%" stop-color="#fff" />
+    </linearGradient>
+    <mask id="mask1">
+      <rect x="0" y="0" width="128" height="128" fill="url(#grad1)" />
+    </mask>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-width="16">
+    <circle class="lp__ring" r="56" cx="64" cy="64" stroke="#ddd" />
+    <g stroke="hsl(183,90%,40%)">
+      <polyline class="lp__fall-line" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay1" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay2" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay3" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay4" points="64,8 64,120" />
+      <circle class="lp__drops" r="56" cx="64" cy="64" transform="rotate(90,64,64)" />
+      <circle class="lp__worm" r="56" cx="64" cy="64" transform="rotate(-90,64,64)" />
+    </g>
+    <g stroke="hsl(93,90%,40%)" mask="url(#mask1)">
+      <polyline class="lp__fall-line" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay1" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay2" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay3" points="64,8 64,120" />
+      <polyline class="lp__fall-line lp__fall-line--delay4" points="64,8 64,120" />
+      <circle class="lp__drops" r="56" cx="64" cy="64" transform="rotate(90,64,64)" />
+      <circle class="lp__worm" r="56" cx="64" cy="64" transform="rotate(-90,64,64)" />
+    </g>
+  </g>
+</svg>
+
+
+  <button class="btn" (click)="saveData()"> Save</button>
+ 
+
+  <div class="toast" id="toast-message"></div>

@@ -1,0 +1,113 @@
+<!-- SIDEBAR -->
+
+<section id="sidebar" [ngClass]="status ? 'hide' : ''" >
+    <a  class="brand">
+    </a>
+    <ul class="side-menu top">
+      <li class="active">
+        <a href="#">
+          <i class='bx bxs-dashboard' ></i>
+          <span class="text">Home Page</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="goProfile()">
+          <i class='bx bxs-user' ></i>
+          <span class="text">Profile</span>
+        </a>
+      </li>
+      <li *ngIf="isUserAdmin==='ADMIN'" >
+        <a  (click)="goAdminsitration()">
+          <i class='bx bxs-folder' ></i>
+          <span class="text">Administration</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="side-menu">
+  
+      <li>
+        <a class="logout" (click)="logout()">
+          <i class='bx bxs-log-out-circle' ></i>
+          <span class="text">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <!-- SIDEBAR -->
+
+
+
+  <!-- CONTENT -->
+  <section id="content">
+    <!-- NAVBAR -->
+    <nav>
+      <i (click)="addToggle()" class='bx bx-menu' ></i>
+      
+
+    </nav>
+    <!-- NAVBAR -->
+
+
+    <!-- MAIN -->
+
+    <main>
+      <div class="head-title">
+        <div class="left">
+
+          <h1>Home Page</h1>
+
+          <ul class="breadcrumb">
+            <li>
+              <a >Home Page</a>
+
+            </li>
+          </ul>
+
+      <br>
+      <br><br>
+
+      
+      <div class="projectcontainer" *ngIf="isUserAdmin!='ADMIN'"></div>
+      <br>
+      <br>
+      <br>
+      <br><br><h2>Manager Zone!</h2>
+      
+        
+        
+          <p>Explore what you can achieve with our platform.</p>
+          <p>Find the tools you need, personalize your dashboard, and get started on your projects!</p>
+          
+            <img src="./assets/abc.png" class="abc">
+            
+          
+          <br>
+        
+    
+          <a  class="btn-download" (click)="connectToProjects()" >
+            <i class='bx bxs-cloud-download' ></i>
+            <span class="text">Connect to Your Projects</span>
+          </a>
+        </div>
+      </div>
+
+
+
+
+  
+
+
+
+    </main>
+    <!-- MAIN -->
+  </section>
+  <!-- CONTENT -->
+  <div class="toasts">
+  <div class="toast3" id="toast-message3"></div>
+
+  <div class="toast4" id="toast-message4"></div>
+  <div class="toast2" id="toast-message2"></div>
+  <div class="toast5" id="toast-message5"></div>
+  <div class="toast6" id="toast-message6"></div>
+
+</div>

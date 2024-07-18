@@ -1,0 +1,579 @@
+body {
+  font-family: 'lato', sans-serif;
+}
+.container {
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -70PX;
+}
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+}
+h2 small {
+  font-size: 0.5em;
+}
+.responsive-table li {
+  border-radius: 10px;
+  padding: 25px 30px;
+  display: flex;
+  margin-bottom: 10px;
+}
+.responsive-table .table-header {
+  background-color: #00ae4e;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #fff;
+}
+.responsive-table .table-row {
+  background-color: #fff;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media all and (max-width: 767px) {
+  .responsive-table .table-header {
+      display: none;
+ }
+  .responsive-table li {
+      display: block;
+ }
+  .responsive-table .col {
+      flex-basis: 100%;
+ }
+  .responsive-table .col {
+      display: flex;
+      padding: 10px 0;
+ }
+  .responsive-table .col:before {
+      color: #6c7a89;
+      padding-right: 10px;
+      content: attr(data-label);
+      flex-basis: 50%;
+      text-align: right;
+ }
+}
+.lemenuaction{
+  position: relative;
+  margin-top: -0.9rem;
+}
+.example-button-row button,
+.example-button-row a {
+position: relative;
+margin-top: -0.9rem;
+
+}
+.custom-icon {
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.example-disabled {
+display: inline-block;
+}
+#true {
+  background-color: #00ae4e;
+  margin-left: 1rem;
+  color: #fff; /* This line sets the text color to white */
+}
+
+#false {
+  background-color: #F79027;
+  color: #fff; /* This line sets the text color to white */
+  margin-left: 1rem;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin: 20px 0;
+}
+
+ul.responsive-table {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.responsive-table .table-header,
+ul.responsive-table .table-row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+ul.responsive-table .table-row:hover {
+  background-color: #D1D2D5;
+}
+
+ul.responsive-table .col {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.example-button-row {
+  display: flex;
+  justify-content: center;
+}
+
+.lemenuaction {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 10px;
+  color: #405065;
+}
+
+
+#chart,
+#chart1,
+#chart2,
+#chart3,
+#chart4,
+#chart5 {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumb li {
+  margin-right: 5px;
+}
+
+.breadcrumb li a {
+  color: #6C757D;
+  text-decoration: none;
+}
+
+.breadcrumb li i {
+  color: #6C757D;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  padding: 20px;
+}
+
+.chart-container {
+  background: #fdefef;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-container.large {
+  width: 100%;
+  height: 300px;
+}
+
+.chart-container h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.chart-container apx-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.widget-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-right: 28px;
+  margin-left: -5.5px;
+}
+
+.widget {
+  background-color: #fdefef;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  flex: 1;
+  margin-left: 28px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.widget:last-child {
+  margin-right: 0;
+}
+
+.widget:hover {
+  transform: translateY(-5px);
+}
+
+.widget h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.widget-content {
+  text-align: center;
+}
+
+.widget-content h3 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #555;
+}
+
+.widget:last-child {
+  margin-right: 0;
+}
+
+.widget-icon {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #00AE4E;
+  color: #fff;
+  line-height: 40px;
+  font-size: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for each individual chart */
+#chart,
+#chart1,
+#chart2,
+#chart3,
+#chart4,
+#chart5 {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.chart-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.chart-container apx-chart {
+  width: 100%;
+  height: 100%;
+}
+
+/* Widgets */
+.widget-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.widget {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  flex: 1;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.widget:last-child {
+  margin-right: 0;
+}
+
+.widget:hover {
+  transform: translateY(-5px);
+}
+
+.widget h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.widget-content {
+  text-align: center;
+}
+
+.widget-content h3 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #555;
+}
+
+.widget-icon {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #00AE4E;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #00AE4E;
+  color: #fff;
+  line-height: 40px;
+  font-size: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+  .widget-container {
+    flex-wrap: wrap;
+  }
+
+  .widget {
+    width: 48%;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .widget:last-child {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .widget {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* Grid for Dashboard Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Grid for 3 main charts */
+.main-charts {
+  grid-column: span 3;
+}
+
+/* Grid for secondary charts */
+.secondary-charts {
+  grid-column: span 3; /* Modifier pour occuper toute la largeur */
+}
+
+/* Individual chart containers */
+.chart-container {
+  background: #FFFBFB;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Customized styles for chart titles */
+.chart-container h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Customized styles for chart components */
+.chart-container apx-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.button.mat-menu-item {
+  background-color: #00AE4E; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Supprimer la bordure */
+  padding: 10px 20px; /* Espacement intérieur */
+  border-radius: 5px; /* Bordure arrondie */
+  cursor: pointer; /* Curseur pointeur */
+  transition: background-color 0.3s; /* Transition de couleur de fond */
+}
+/* Au survol */
+button.mat-menu-item:hover {
+  background-color: #007D39; /* Nouvelle couleur de fond */
+}
+/* Au clic */
+button.mat-menu-item:active {
+  background-color: #005A23; /* Nouvelle couleur de fond */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.floating-container {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
+  right: 0;
+  margin: 35px 25px;
+}
+.floating-container:hover {
+  height: 300px;
+}
+.floating-container:hover .floating-button {
+  box-shadow: 0 10px 25px rgba(44, 240, 70, 0.6);
+  -webkit-transform: translatey(5px);
+          transform: translatey(5px);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container:hover .element-container .float-element:nth-child(1) {
+  -webkit-animation: come-in 0.4s forwards 0.2s;
+          animation: come-in 0.4s forwards 0.2s;
+}
+.floating-container:hover .element-container .float-element:nth-child(2) {
+  -webkit-animation: come-in 0.4s forwards 0.4s;
+          animation: come-in 0.4s forwards 0.4s;
+}
+
+.floating-container .floating-button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #00AE4E;
+  bottom: 0;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(44, 179, 240, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container .float-element {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 15px auto;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  line-height: 50px;
+  z-index: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+}
+.floating-container .float-element .material-icons {
+  vertical-align: middle;
+  font-size: 16px;
+}
+.floating-container .float-element:nth-child(1) {
+  background: #42A5F5;
+  box-shadow: 0 20px 20px -10px rgba(66, 165, 245, 0.5);
+}
+.floating-container .float-element:nth-child(2) {
+  background: #F79027;
+  box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
+}
+
+
+
+
+
+
+.resizable-wrapper {
+  position: relative;
+  padding: 5px;
+  box-sizing: border-box;
+  overflow: hidden; /* Add scrollbars when the content is larger than the wrapper */
+}
+
+.inner-div {
+  width: 100%; /* Make sure the inner div fills the resizable wrapper */
+  height: 100%; /* Make sure the inner div fills the resizable wrapper */
+  display: flex; /* Optional: Use flexbox to align content */
+  align-items: center; /* Optional: Align the iframe content vertically */
+  justify-content: center; /* Optional: Align the iframe content horizontally */
+}
+
+.resizable-wrapper iframe {
+  width: 100%; /* The iframe will fill the inner div */
+  height: 100%; /* The iframe will fill the inner div */
+  display: block;
+}
+.resize-icons{
+  margin-left: 78%;
+}
+
+
+.btn-download3 {
+  background: #00AE4E;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+}
+.btn-download3:hover {
+  background-color: #00AE4E;
+}
+.btn-download3 .text {
+  margin-left: 10px;
+}

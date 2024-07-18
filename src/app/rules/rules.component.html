@@ -1,0 +1,334 @@
+
+<body>
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a href="#" class="brand"></a>
+  <ul class="side-menu top">
+    <li >
+      <a (click)="goDashboard()">
+        <i class='bx bxs-dashboard'></i>
+        <span class="text">Project OverView</span>
+      </a>
+    </li>
+    <li [class.active]="selectedItem === 1" (click)="selectItem(1)">
+      <a href="/alert">
+        <i class='bx bxs-bell'></i>
+        <span class="text">Alerts</span>
+      </a>
+    </li>
+
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="/projectsettings"  *ngIf="isUserManager === 'MANAGER'" >
+        <i class='bx bxs-cog'></i>
+        <span class="text">Settings</span>
+      </a>
+    </li>
+    <li>
+      <a (click)="logout()" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+
+
+<!-- SIDEBAR -->
+
+<!-- CONTENT -->
+<section id="content">
+
+  <!-- NAVBAR -->
+  <nav>
+    <i (click)="addToggle()" class='bx bx-menu' ></i>
+    <form >
+
+    </form>
+
+    <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+
+    <a  class="notification">
+
+      <i class='bx bxs-bell' ></i>
+      <span class="num">{{ nbAlerts }}</span>
+    </a>
+
+  </nav>
+
+
+  <!-- NAVBAR -->
+  <nav class="site-nav2" *ngIf="showRuleInfoMenu">
+    <h2 >{{this.ruleName}}</h2>
+    <br>
+
+    <label class="inp">
+      <input type="text" id="inp-rule-name" placeholder="&nbsp;" [(ngModel)]="ruleName" readonly="active">
+      <span class="label">Rule name</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-rule-name" placeholder="&nbsp;" [(ngModel)]="instance" readonly="active" >
+      <span class="label">Instance</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-description" placeholder="&nbsp;" [(ngModel)]="description" readonly="active">
+      <span class="label">Description</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-summary" placeholder="&nbsp;" [(ngModel)]="summary" readonly="active">
+      <span class="label">Summary</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-severity" placeholder="&nbsp;" [(ngModel)]="severity" readonly="active">
+      <span class="label">Severity</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-time-range" placeholder="&nbsp;" [(ngModel)]="timeRange" readonly="active">
+      <span class="label">Time range</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <a class="btn-download3" (click)="openRuleInfo()">Exit</a>
+    <br>
+    <br>
+    <br>
+    <br>
+      <br>
+
+  </nav>
+
+
+  <nav class="site-nav2" *ngIf="showRuleEditMenu">
+    <h2>{{ruleName}}</h2>
+    <br>
+
+    <label class="inp">
+      <input type="text" id="inp-description" placeholder="&nbsp;" [(ngModel)]="newdescription">
+      <span class="label">Description</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-summary" placeholder="&nbsp;" [(ngModel)]="newsummary" >
+      <span class="label">Summary</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-severity" placeholder="&nbsp;" [(ngModel)]="newseverity" >
+      <span class="label">Severity</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <label class="inp">
+      <input type="text" id="inp-time-range" placeholder="&nbsp;" [(ngModel)]="newtimeRange" >
+      <span class="label">Time range (s)</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <a class="btn-download3" (click)="openRuleEditMenu()">Cancel</a>
+
+    <a class="btn-download3" (click)="saveModifiedRule()">Save</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </nav>
+
+
+  <!-- SIDE BAR FOR ALERT MAILS -->
+
+  <!-- ALERT EDIT SIDE MENU-->
+
+  <!-- MAIN -->
+  <!-- lena l faza taa l angle -->
+  <br>
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>{{projectName}}</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">Project</a>
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a href="/alert">Alerting</a>
+
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a class="active" >Rules</a>
+
+          </li>
+
+
+
+        </ul>
+      </div>
+
+
+    </div>
+
+    <div class="alertbuttons">
+      <a  class="btn-download3" (click)="goMailSettings()"  *ngIf="isUserManager === 'MANAGER'"  >
+        <i class='bx bxs-message' ></i>
+        <span class="text">Mail Settings</span>
+
+      </a>
+      <br>
+      <a  class="btn-download3" (click)="goAlerts()"  >
+        <span class="text">Check Alerts Set</span>
+
+      </a>
+      <br>
+      <br>
+    
+      <a  class="btn-download3" (click)="openPopup()"  *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'">
+        <span class="text">Set a New Alert</span>
+
+      </a>
+
+    </div>
+
+
+
+    <ul class="box-info">
+
+      <li>
+        <i class='bx bxs-bell' ></i>
+        <span class="text" >
+          <h3>{{nbAlerts}}</h3>
+          <p>Alerts in Total</p>
+        </span>
+      </li>
+      <li>
+        <i class='bx bxs-cctv' ></i>
+        <span class="text">
+          <h3>{{nbRules}}</h3>
+          <p> Rules in Total
+          </p>
+        </span>
+      </li>
+    </ul>
+
+
+  
+
+    <section>
+
+      <div class="ltable">
+
+        <div class="lheader">
+          <h3 variant="outline" style="float: left;">Rules</h3>
+          <div  variant="outline" style="float: right;"  class="element-container">
+            <span class="float-element">
+              <div id="dashboard-content" #myElement>
+              </div>
+        <button (click)="generatePDF() "></button>
+        <i class="material-icons" (click)="generatePDF() ">file_download</i>
+            </span>
+        
+          </div>
+        </div>
+
+
+        <table >
+          <thead>
+          <tr>
+            <th *ngIf='appType!=="Monolithic app"' class="instance">Microserice Name</th>
+            <th class="instance">Instance</th>
+            <th class="title">Name</th>
+            <th class="summary">Query</th>
+            <th class="status">Duration</th>
+            <th class="status">State</th>
+            <th class="action">Action</th>
+          </tr>
+          </thead>
+          <tbody >
+          <tr *ngFor="let rule of rulesArray">
+
+            <td *ngIf="appType !== 'Monolithic app'" class="instance">{{ getInstanceIndex(rule.instance) }}</td>
+
+            <td class="instance">{{ rule.instance }}</td>
+            <td class="title">{{ rule.name }}</td>
+            <td class="summary">{{ rule.query }}</td>
+            <td class="status">{{ rule.duration }} (s)</td>
+            <td >
+              <span class="rule-state" id="{{rule.state}}" >{{rule.state}}</span>
+            </td>
+
+            <td class="action">
+              <div class="lemenuaction">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="openRuleEditMenu();showRuleInfo(rule)"  *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit Informations</span>
+                  </button>
+                  <button mat-menu-item (click)="storeRuleToDlete(rule);openDialog()" *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'" >
+                    <mat-icon>delete_forever</mat-icon>
+                    <span>Delete Rule</span>
+                  </button>
+                  <button mat-menu-item (click)="openRuleInfo();showRuleInfo(rule)">
+                    <mat-icon>visibility</mat-icon>
+                    <span>View Informations</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </td>
+
+          </tr>
+
+          </tbody>
+
+        </table>
+        
+        <div class="dialog-container" *ngIf="showDialog" >
+          <div class="dialog-content">
+            <h2 class="dialog-title">Delete Confirmation</h2>
+            <p>Are you sure you want to delete the Rule.</p>
+            <div class="dialog-buttons">
+              <button mat-button (click)="deleteConfirmation()">Yes</button>
+              <button mat-button (click)="closeDialog()">No</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lheader">
+        <h3 variant="outline" style="float: left;">Rules Statistics</h3>
+        <br>
+        </div>
+    
+      
+
+      <br>
+
+
+    </section>
+
+
+  </main>
+
+  <!-- MAIN -->
+</section>
+<!-- CONTENT -->
+</body>
+
+

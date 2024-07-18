@@ -1,0 +1,204 @@
+
+.overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 9999;
+	background-color: #eeeeee;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.247);
+   
+	border-radius: 20px;
+	padding: 60px;
+  }
+
+.overlay-container::before {
+content: '';
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #eeeeee;
+backdrop-filter: blur(10px);
+z-index: 9998;
+}
+
+button.selected {
+  background-color: green;
+}
+
+.charts {
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.container .btn {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 50px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .btn a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(18, 107, 134, 0.89);
+  box-shadow: 0 15px 15px rgba(29, 60, 78, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 10px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  overflow: hidden;
+  color: #000000;
+  font-weight: 400px;
+  z-index: 1;
+  transition: 0.5s;
+  backdrop-filter: blur(15px);
+}
+.container .btn:hover a {
+  letter-spacing: 3px;
+}
+.container .btn a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(45deg) translate(0);
+  transition: 0.5s;
+  filter: blur(0px);
+}
+.container .btn:hover a::before {
+  transform: skewX(45deg) translate(200px);
+}
+.container .btn::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+  bottom: -5px;
+  width: 30px;
+  height: 10px;
+  background: rgb(0, 153, 255);
+  border-radius: 10px;
+  transition: 0.5s;
+  transition-delay: 0.5;
+}
+.container .btn:hover::before /*lightup button*/ {
+  bottom: 0;
+  height: 50%;
+  width: 80%;
+  border-radius: 30px;
+}
+
+.container .btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+  top: -5px;
+  width: 30px;
+  height: 10px;
+  background: rgb(0, 225, 255);
+  border-radius: 10px;
+  transition: 0.5s;
+  transition-delay: 0.5;
+}
+.container .btn:hover::after /*lightup button*/ {
+  top: 0;
+  height: 50%;
+  width: 80%;
+  border-radius: 30px;
+}
+.container .btn:nth-child(1)::before, /*chnage 1*/
+.container .btn:nth-child(1)::after {
+  background: #1f79ff;
+  box-shadow: 0 0 5px #1f88ff, 0 0 15px #1f93ff, 0 0 30px #1ff8ff,
+	  0 0 60px #1f2eff;
+}
+.container .btn:nth-child(2)::before, /* 2*/
+.container .btn:nth-child(2)::after {
+  background: #2db2ff;
+  box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff,
+	  0 0 60px #2db2ff;
+}
+.container .btn:nth-child(3)::before, /* 3*/
+.container .btn:nth-child(3)::after {
+  background: #1e9aff;
+  box-shadow: 0 0 5px #1ee5ff, 0 0 15px #1e78ff, 0 0 30px #1ecbff,
+	  0 0 60px #1e47ff;
+}
+
+.btnpanel {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 1.5rem;
+  background-color: #3d3d3d;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btnpanel:hover {
+  background-color: #303030;
+  color: white;
+}
+
+
+input[type="text"] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid red;
+  font-size: 16px;
+  color: rgb(24, 15, 15);
+  padding: 10px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="text"]:not(:placeholder-shown) {
+  outline: none;
+  border-bottom-color: blue;
+}
+
+input[type="text"]:not(:empty) {
+  color: blue;
+  border-bottom-color: blue;
+}
+
+
+
+

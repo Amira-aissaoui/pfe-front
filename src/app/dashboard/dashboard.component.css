@@ -1,0 +1,348 @@
+.iframe-container {
+  margin-left: 2px;
+}
+
+
+#content main .table-data2 {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 24px;
+  margin-top: 24px;
+  width: 450px;
+  color: var(--dark);
+}
+
+#content main .table-data2 {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 24px;
+  margin-top: 24px;
+  width: 520px;
+  height: 300px;
+
+  color: var(--dark);
+}
+#content main .table-data2 > div {
+  border-radius: 20px;
+  background: var(--light);
+  padding: 24px;
+  overflow-x: auto;
+}
+
+#content main .table-data2 .order {
+  flex-grow: 1;
+  flex-basis: 500px;
+}
+#OverView{
+  background-color: #44584925;
+  color: #115221;
+}
+
+.refresh-icon {
+  color: rgb(52, 124, 70); /* Set the color to blue (you can change it to any color you prefer) */
+  font-size: 30px; /* Set the font size to 20 pixels (you can adjust it as needed) */
+  /* Add any other CSS styles you want to apply to the refresh icon */
+}
+
+.custom-icon {
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+
+.table-data2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-data2 a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.table-data2 i {
+  font-size: 24px;
+  /* Add additional styles for the icon */
+}
+
+
+/* Variables */
+:root {
+  --fab-close-line-length: 1.64rem;
+  --fab-close-line-thickness: 2px;
+  --fab-close-animation-time: 0.3s;
+  --fab-close-spins: 1;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@-webkit-keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+            transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+            transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+            transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+            transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes come-in {
+  0% {
+    -webkit-transform: translatey(100px);
+            transform: translatey(100px);
+    opacity: 0;
+  }
+  30% {
+    -webkit-transform: translateX(-50px) scale(0.4);
+            transform: translateX(-50px) scale(0.4);
+  }
+  70% {
+    -webkit-transform: translateX(0px) scale(1.2);
+            transform: translateX(0px) scale(1.2);
+  }
+  100% {
+    -webkit-transform: translatey(0px) scale(1);
+            transform: translatey(0px) scale(1);
+    opacity: 1;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: #eaedf2;
+  font-family: 'Roboto', sans-serif;
+}
+
+.floating-container {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
+  right: 0;
+  margin: 35px 25px;
+}
+.floating-container:hover {
+  height: 300px;
+}
+.floating-container:hover .floating-button {
+  box-shadow: 0 10px 25px rgba(44, 240, 70, 0.6);
+  -webkit-transform: translatey(5px);
+          transform: translatey(5px);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container:hover .element-container .float-element:nth-child(1) {
+  -webkit-animation: come-in 0.4s forwards 0.2s;
+          animation: come-in 0.4s forwards 0.2s;
+}
+.floating-container:hover .element-container .float-element:nth-child(2) {
+  -webkit-animation: come-in 0.4s forwards 0.4s;
+          animation: come-in 0.4s forwards 0.4s;
+}
+
+.floating-container .floating-button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #00AE4E;
+  bottom: 0;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(44, 179, 240, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container .float-element {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 15px auto;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  line-height: 50px;
+  z-index: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+}
+.floating-container .float-element .material-icons {
+  vertical-align: middle;
+  font-size: 16px;
+}
+.floating-container .float-element:nth-child(1) {
+  background: #42A5F5;
+  box-shadow: 0 20px 20px -10px rgba(66, 165, 245, 0.5);
+}
+.floating-container .float-element:nth-child(2) {
+  background: #F79027;
+  box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
+}
+
+
+
+
+
+
+.resizable-wrapper {
+  position: relative;
+  padding: 5px;
+  box-sizing: border-box;
+  overflow: hidden; /* Add scrollbars when the content is larger than the wrapper */
+}
+
+.inner-div {
+  width: 100%; /* Make sure the inner div fills the resizable wrapper */
+  height: 100%; /* Make sure the inner div fills the resizable wrapper */
+  display: flex; /* Optional: Use flexbox to align content */
+  align-items: center; /* Optional: Align the iframe content vertically */
+  justify-content: center; /* Optional: Align the iframe content horizontally */
+}
+
+.resizable-wrapper iframe {
+  width: 100%; /* The iframe will fill the inner div */
+  height: 100%; /* The iframe will fill the inner div */
+  display: block;
+}
+.resize-icons{
+  margin-left: 78%;
+}
+
+
+@media print {
+  #sidebar {
+    display: none;
+  }
+  nav {
+    display: none;
+  }
+  .mat-raised-button {
+    display: none;
+  }
+
+  .toast3, .toast4, .toast2, .toast5, .toast6 {
+    display: none;
+  }
+  /* add other elements you want to hide when printing */
+  .floating-container, .head-title, .breadcrumb, .bx, .mat-raised-button,.amira, .a  {
+    display: none;
+  }
+
+  .page {
+    size: A4 landscape;
+    margin: 5cm;
+  }
+  
+
+}
+
+
+/* Form field background and border color */
+mat-form-field .mat-form-field-flex {
+  background-color: #F9F9F9; /* Change background color */
+  border: 1px solid #CCCCCC; /* Change border color */
+}
+
+/* Input text and placeholder color */
+mat-form-field input {
+  color: #333333; /* Change text color */
+}
+
+mat-form-field input::placeholder {
+  color: #999999; /* Change placeholder text color */
+}
+
+/* Hint text color */
+mat-hint {
+  color: #666666; /* Change hint text color */
+}
+
+/* Datepicker toggle button color */
+mat-datepicker-toggle .mat-icon-button {
+  color: #00AE4E; /* Change icon color */
+  
+}
+
+/* Button background and text color */
+button[mat-raised-button] {
+  background-color: #00AE4E; /* Change button background color */
+  color: #FFFFFF; /* Change button text color */
+}
+mat-calendar-body-range-start:not(.mat-calendar-body-in-comparison-range)::before,
+.mat-calendar-body-range-start::after,
+.mat-calendar-body-comparison-start:not(.mat-calendar-body-comparison-bridge-start)::before,
+.mat-calendar-body-comparison-start::after,
+.mat-calendar-body-preview-start .mat-calendar-body-cell-preview {
+    left: 5%;
+    width: 95%;
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+}
+.mat-datepicker-content .mat-calendar {
+    width: 296px;
+    height: 354px;
+    background-color: #00AE4E; /* Change background color */
+    color: #FFFFFF; /* Change text color */
+}
+.mat-datepicker-content .mat-calendar-table {
+    color: #FFFFFF; /* Change text color for the calendar table */
+}
+
+.mat-calendar-body-cell-content.mat-focus-indicator {
+  position: absolute;
+  background-color: #00AE4E; 
+}
+
+.mat-calendar-body-cell {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  text-align: center;
+  outline: none;
+  font-family: inherit;
+  margin: 0;
+  background-color: #00AE4E; 
+  color: #00AE4E;
+}
+.amira{
+  margin-left: 64rem;
+}
+
+
+
+

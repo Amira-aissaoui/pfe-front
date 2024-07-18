@@ -1,0 +1,214 @@
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+    <a  class="brand">
+    </a>
+    <ul class="side-menu top">
+      <li >
+        <a href="/home">
+          <i class='bx bxs-dashboard' ></i>
+          <span class="text">Home</span>
+        </a>
+      </li>
+      <li class="active">
+        <a href="/profile">
+          <i class='bx bxs-user' ></i>
+          <span class="text">Profile</span>
+        </a>
+      </li>
+      <li *ngIf="isUserAdmin==='ADMIN'" >
+        <a  (click)="goAdminsitration()">
+          <i class='bx bxs-folder' ></i>
+          <span class="text">Administration</span>
+        </a>
+      </li>
+      <li *ngIf="isUserAdmin==='MANAGER'" >
+        <a  href="/manageprojects">
+          <i class='bx bxs-folder' ></i>
+          <span class="text">Administration</span>
+        </a>
+      </li>
+
+
+    </ul>
+    <ul class="side-menu">
+
+      <li>
+        <a href="/l" class="logout">
+          <i class='bx bxs-log-out-circle' ></i>
+          <span class="text">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <!-- SIDEBAR -->
+
+
+
+  <!-- CONTENT -->
+  <section id="content">
+    <!-- NAVBAR -->
+    <nav>
+      <i (click)="addToggle()" class='bx bx-menu' ></i>
+
+      <a  class="brand">
+        <span class="text"><h3> AES Monitoring Platform</h3></span>
+
+      </a>
+      <form></form>
+        <div class="menuitems">
+      <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+
+    </div>
+    </nav>
+    <!-- NAVBAR -->
+
+
+    <!-- MAIN -->
+
+
+    <main>
+      
+      <div class="head-title">
+        <div class="left">
+
+          <h1>Profile</h1>
+
+          <ul class="breadcrumb">
+            <li>
+              <a >Home</a>
+
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+              <a class="active" routerLink="/projects">Profile</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <br>
+
+
+      <!-- Font Awesome Link -->
+
+  <div class="modal clearfix">
+      <div class="modal-product">
+        <div class="product">
+
+
+
+          <h1 class="product-name">
+          </h1>
+
+          <p class="product-price">
+            Hello {{ userInfo?.user?.firstname }}
+          </p>
+        <br>
+          <div class="avatar-container">
+            <div class="image-container" *ngIf="url; else placeholder"
+            [ngClass]="{'box-shadow-avatar': !!url}"
+            [ngStyle]="{backgroundImage: 'url(' + url + ')'}">
+            </div>
+        
+            <ng-template #placeholder>
+                <div class="image-container avatar-placeholder">
+                </div>
+            </ng-template>
+        
+            <label for="avatar-input-file">
+                <div class="icon-wrapper">
+                  <input
+                  type="file"
+                  id="avatar-input-file"
+                  (change)="onFileChange($event)" />
+                <mat-icon class="icon" fontIcon="edit"></mat-icon>
+                </div>
+            </label>
+            <span class="message">Tap here to select your picture!</span>
+        </div>
+          
+
+        </div>
+
+        <div class="round-shape"></div>
+      </div>
+      <div class="modal-info">
+        <div class="info">
+          <div *ngIf="!isEdit">
+          <h2>Profile Information</h2>
+        </div>
+        <div *ngIf="isEdit">
+          <h2>Editing Profile</h2>
+        </div>
+          <form>
+            
+            <ul class="form-list">
+              <li class="form-list-row">
+                <div class="user">
+                  <label >Firstname</label><br>
+                  <i class="fas fa-user"></i>
+                  <input type="text" required  [readonly]="!isEdit"  [(ngModel)]="firstname"  [ngModelOptions]="{ standalone: true }"  >
+                </div>
+              </li>
+              <br *ngIf="!isEdit">
+              <li class="form-list-row">
+                <div class="user">
+                  <label >Lastname</label><br>
+                  <i class="fas fa-user"></i><input type="text" required [(ngModel)]="lastname"  [ngModelOptions]="{ standalone: true }" [readonly]="!isEdit">
+                </div>
+              </li>
+              <br *ngIf="!isEdit">
+              <li class="form-list-row">
+                <div class="number">
+                  <label>Mail Address</label><br>
+                  <i class="far fa-credit-card"></i><input type="text" required  [(ngModel)]="email"  [ngModelOptions]="{ standalone: true }" [readonly]="!isEdit">
+                </div>
+              </li>
+              <br *ngIf="!isEdit">
+
+              <li class="form-list-row" *ngIf="isEdit">
+                <div class="number">
+                  <label >Current Password</label><br>
+                  <i class="far fa-credit-card"></i><input type="password" required placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true }" >
+                </div>
+              </li>
+              <li class="form-list-row" *ngIf="isEdit">
+                <div class="number">
+                  <label >New Password</label><br>
+                  <i class="far fa-credit-card"></i><input type="password" required placeholder="New Password" [(ngModel)]="newpassword"  [ngModelOptions]="{ standalone: true }" >
+                </div>
+              </li>
+              <li class="form-list-row" *ngIf="isEdit">
+                <div class="number">
+                  <label>Re-Type New Password</label><br>
+                  <i class="far fa-credit-card"></i><input type="password" required placeholder="New Password" [(ngModel)]="verifypassword" [ngModelOptions]="{ standalone: true }"  >
+                </div>
+              </li>
+            </ul>
+            
+            <button class="btn-download3" *ngIf="!isEdit" (click)="editInformation()">Edit Information</button>
+            <br>
+            <br>
+            <br>
+
+            <button *ngIf="isEdit " id="savebtn" (click)="editProfile()">Save</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    </main>
+    <!-- MAIN -->
+  </section>
+
+
+  <!-- CONTENT -->
+  <div class="toasts">
+  <div class="toast3" id="toast-message3"></div>
+
+  <div class="toast4" id="toast-message4"></div>
+  <div class="toast2" id="toast-message2"></div>
+  <div class="toast5" id="toast-message5"></div>
+  <div class="toast6" id="toast-message6"></div>
+
+</div>

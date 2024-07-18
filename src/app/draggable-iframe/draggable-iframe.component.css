@@ -1,0 +1,163 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    padding: 10px;
+    transition: transform 0.35s;
+    background: linear-gradient(-45deg, #a1b2b9, #1c4855 );   
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adds a shadow effect */
+     overflow: auto;
+     transition: all 0.3s ease;
+
+  }
+
+  .sidebar::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .sidebar::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+    
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 20px;
+    border: 3px solid #f5f5f5;
+  }
+  
+  .container {
+    
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    
+
+  }
+  
+  .box {
+    border: 3px solid #666;
+    background-color: #ddd;
+    border-radius: .5em;
+    padding: 10px;
+    cursor: move;
+  }
+  .container_win_l_drop{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 10fr));
+    gap: 10px;
+    margin-top: 20px;
+    margin-right: 320px; /* add margin equal to sidebar width + padding */
+    grid-auto-flow: dense; /* Add this property to prevent overlap */
+    margin-left: 15%;
+
+
+  }
+  .dropbox {
+    border: 4px dashed #666;
+    background-color: #f5f5f5;
+    border-radius: .5em;
+    padding: 20%;
+    cursor: move;
+    position: relative;
+  
+
+  }
+  
+  .dropbox::after {
+    content: "Drop Here";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #666;
+
+  }
+  
+
+  .dropbox.dropped::after {
+    display: none;
+    
+  }
+  .dropbox:active {
+    z-index:2;
+  }
+
+  
+/* l css mtaa l MENU */ 
+
+  
+  .menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #87b3c7;
+  width: 240px;
+  height: 100%;
+  transform: translate3d(-240px, 0, 0);
+  transition: transform 0.35s;
+  background: linear-gradient(-45deg, #a1b2b9, #82c9df );   
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adds a shadow effect */
+
+
+  }
+  .menu label.menu-toggle {
+  position: absolute;
+  right: -60px;
+  width: 60px;
+  height: 60px;
+  line-height: 0px;
+  display: block;
+  padding: 100;
+  text-indent: -9999px;
+  border-radius: 5%; /* Makes the element circular */
+  background: url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png) 50% 50% / 25px 25px no-repeat;
+  }
+
+  .menu ul li > label {
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png) 95% 50% / 16px 16px no-repeat;
+  }
+  .menu ul li a, .menu ul li label {
+  display: block;
+  text-align: center;
+  padding: 0 20px;
+  line-height: 60px;
+  text-decoration: none;
+  color: #000;
+  }
+  .menu ul li a:hover, .menu ul li label:hover {
+  color: #666;
+  }
+  
+  /* hide inputs */
+  .menu-checkbox {
+  display: none;
+  }
+  
+  /* hide navigation icon for sublabels */
+  .menu .menu label.menu-toggle {
+  background: none;
+  }
+  
+  /* fade in checked menu */
+  .menu-checkbox:checked + .menu {
+  transform: translate3d(0, 0, 0);
+  animation: slide 0.35s ease-in-out;
+  }
+  @keyframes slide {
+      0% { transform: translate3d(-240px, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+  }
+  
+ 
+ .btn {
+margin-top: 15%;
+margin-left: 55%;
+border-radius: 6px;
+ }
+
+

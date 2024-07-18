@@ -1,0 +1,433 @@
+
+<body>
+  <!-- SIDEBAR -->
+  <section id="sidebar" [ngClass]="status ? 'hide' : ''">
+    <a href="#" class="brand"></a>
+    <ul class="side-menu top">
+      <li >
+        <a (click)="goDashboard()">
+          <i class='bx bxs-dashboard'></i>
+          <span class="text">Project OverView</span>
+        </a>
+      </li>
+      <li [class.active]="selectedItem === 1" (click)="selectItem(1)">
+        <a >
+          <i class='bx bxs-bell'></i>
+          <span class="text">Alerts</span>
+        </a>
+      </li>
+
+    </ul>
+    <ul class="side-menu">
+ 
+      <li>
+        <a href="/projectsettings"  *ngIf="isUserManager === 'MANAGER'" >
+          <i class='bx bxs-cog'></i>
+          <span class="text">Settings</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()" class="logout">
+          <i class='bx bxs-log-out-circle'></i>
+          <span class="text">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <!-- SIDEBAR -->
+
+
+  <!-- SIDEBAR -->
+
+  <!-- CONTENT -->
+  <section id="content">
+
+    <!-- NAVBAR -->
+    <nav>
+      <i (click)="addToggle()" class='bx bx-menu' ></i>
+      <form >
+
+      </form>
+
+      <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+
+      <a  class="notification">
+
+        <i class='bx bxs-bell' ></i>
+        <span class="num">{{ nbAlerts }}</span>
+      </a>
+
+
+    </nav>
+    <!-- NAVBAR -->
+
+<!-- SIDE BAR FOR ALERT MAILS -->
+    <nav class="site-nav2" *ngIf="showInfoMenu">
+
+      <div class="icon-container">
+
+        <mat-icon [ngClass]="{'green-icon': iconState === 'alarm_on', 'grey-icon': iconState !== 'alarm_on'}">{{ iconState }}</mat-icon>
+        <h2>{{ alertName }}</h2>
+
+      </div>
+
+
+  <label class="inp">
+    <input type="text" placeholder="&nbsp;" [(ngModel)]="alertName" readonly="active">
+    <span class="label">Alert name</span>
+    <span class="focus-bg"></span>
+  </label>
+
+
+
+  <label class="inp">
+    <input type="text" placeholder="&nbsp;" [(ngModel)]="state" readonly="active">
+    <span class="label">State for this Alert</span>
+    <span class="focus-bg"></span>
+  </label>
+
+
+  <label class="inp">
+    <input type="text" placeholder="&nbsp;" [(ngModel)]="receiverName" readonly="active">
+    <span class="label">Team Name</span>
+    <span class="focus-bg"></span>
+  </label>
+
+    <label class="inp" *ngFor="let email of alertEmails">
+      <input type="text" [value]="email" readonly>
+      <span class="label">Receiver Email</span>
+      <span class="focus-bg"></span>
+    </label>
+
+    <a class="btn-download3" (click)="openInfo()">Exit</a>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+</nav>
+
+<!-- ALERT EDIT SIDE MENU-->
+    <nav class="site-nav2" *ngIf="showAlertEditMenu">
+      <h2>{{alertName}}</h2>
+      <br>
+
+      <label class="inp">
+        <input type="text" id="inp-alert-name" placeholder="&nbsp;" [(ngModel)]="alertName">
+        <span class="label">Alert name</span>
+        <span class="focus-bg"></span>
+      </label>
+
+      <label class="inp">
+        <input type="text" id="inp-receiver-name" placeholder="&nbsp;" [(ngModel)]="receiverName">
+        <span class="label">{{receiverName}}</span>
+        <span class="focus-bg"></span>
+      </label>
+      <label class="inp" id="inp-receiver-name" placeholder="&nbsp;" [(ngModel)]="state">
+        <span class="label">{{state}}</span>
+        <span class="focus-bg"></span>
+      </label>
+
+      <label class="inp">
+        <input type="text" id="inp-receiver-email" placeholder="&nbsp;" [(ngModel)]="receiverEmail">
+        <span class="label">Receiver Email</span>
+        <span class="focus-bg"></span>
+      </label>
+
+      <label class="inp">
+        <input type="text" id="inp-team-name" placeholder="&nbsp;" [(ngModel)]="teamName">
+        <span class="label">Team Name Associated</span>
+        <span class="focus-bg"></span>
+      </label>
+
+      <label class="inp">
+        <input type="text" id="inp-new-receiver-email" placeholder="&nbsp;" [(ngModel)]="newReceiverEmail">
+        <span class="label">Add New Receiver Email</span>
+        <span class="focus-bg"></span>
+      </label>
+
+      <label class="inp">
+        <input type="text" id="inp-new-sender-email" placeholder="&nbsp;" [(ngModel)]="newSenderEmail">
+        <span class="label">New Sender Email</span>
+        <span class="focus-bg"></span>
+      </label>
+
+      <a class="btn-download3" (click)="openAlertEditMenu()">Cancel</a>
+
+      <a class="btn-download3" (click)="saveAlert()">Save</a>
+    </nav>
+<br>
+
+    <!-- MAIN -->
+    <main>
+      <div class="head-title">
+        <div class="left">
+          <h1>{{projectName}}</h1>
+          <ul class="breadcrumb">
+            <li>
+              <a href="#">Project</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+              <a class="active" >Alerts</a>
+
+            </li>
+
+
+
+          </ul>
+        </div>
+
+      </div>
+
+
+
+    <div class="alertbuttons">
+    <a  class="btn-download3" (click)="goMailSettings()"  *ngIf="isUserManager === 'MANAGER'"  >
+      <i class='bx bxs-message' ></i>
+      <span class="text">Mail Settings</span>
+
+    </a>
+
+
+      <a  class="btn-download4" (click)="goRules()"  >
+        <span class="text">Check Rules Set</span>
+
+      </a>
+    <a  class="btn-download3" (click)="openPopup()" *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'" >
+      <span class="text">Set a New Alert</span>
+
+    </a>
+
+  </div>
+
+    <ul class="box-info">
+
+      <li>
+        <i class='bx bxs-bell' ></i>
+        <span class="text" >
+          <h3>{{nbAlerts}}</h3>
+          <p>Alerts in Total</p>
+        </span>
+      </li>
+      <li>
+        <i class='bx bxs-cctv' ></i>
+        <span class="text">
+          <h3>{{nbRules}}</h3>
+          <p> Rules in Total
+          </p>
+        </span>
+      </li>
+    </ul>
+
+
+
+  <section>
+
+    <br>
+    <div class="lheader">
+      <h3 variant="outline" style="float: left;">Alerts</h3>
+
+
+          <div  variant="outline" style="float: right;"  class="element-container">
+            <span class="float-element">
+              <div id="dashboard-content" #myElement>
+              </div>
+        <button (click)="generatePDF() "></button>
+        <i class="material-icons" (click)="generatePDF() ">file_download</i>
+            </span>
+        
+          </div>
+  </div>
+
+    <table>
+      <thead>
+      <tr class="header-row">
+        <th *ngIf='appType!=="Monolithic app"' >Microservice Name</th>
+        <th class="alertid">Instance</th>
+        <th>Alert Name</th>
+        <th>Job</th>
+        <th>Severity</th>
+        <th >Active At</th>
+
+        <th >State</th>
+        <th class="action">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+
+     <tr *ngFor="let alert of alertArray">
+      <td *ngIf='appType!=="Monolithic app"'>{{ getInstanceIndex(alert.instance) }}</td>
+      <td class="alertid">{{ alert.instance }}</td>
+        <td >{{ alert.alertname}}</td>
+        <td >{{ alert.job}}</td>
+        <td >{{ alert.severity}}</td>
+        <td >{{ alert.activeAt | date: 'medium' }}</td>
+        <td>
+        <span id="{{alert.state}}" class="alert-state">{{ alert.state }}</span>
+      </td>
+
+        <td class="action">
+            <div class="lemenuaction">
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="getMails(alert)" >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" >
+                <button mat-menu-item (click)="goMailSettings()">
+                <mat-icon>mail</mat-icon>
+                <span>Manage Mail Receivers</span>
+              </button>
+             <button mat-menu-item (click)="disableAlert(alert)"  *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'">
+                <mat-icon>notifications_off</mat-icon>
+                <span>Notifications off</span>
+                <span>{{ buttonState }}</span>
+              </button>
+              <button mat-menu-item (click)="openInfo()">
+                <mat-icon>visibility</mat-icon>
+                <span>More Information</span>
+              </button>
+            </mat-menu>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+<br>
+<div class="lheader">
+<h3 variant="outline" style="float: left;">Alerts Statistics</h3>
+<br>
+</div>
+<div class="chart-container">
+  <div class="chart-box">
+    <h2 class="chart-title">Alert Distribution by Severity</h2>
+    <ngx-charts-pie-chart
+      [view]="[530, 250]"
+      [results]="severityDistribution"
+      [legend]="true"
+      [explodeSlices]="false"
+      [showLabels]="true"
+      [doughnut]="false"
+      [scheme]="colorScheme"
+      class="my-pie-chart">
+    </ngx-charts-pie-chart>
+  </div>
+  
+
+  
+  <div class="chart-box">
+    <h2 class="chart-title">Active Alerts Over Time</h2>
+    <ngx-charts-line-chart
+      [view]="[500, 250]"
+      [results]="activeAlertsOverTime"
+      [legend]="true"
+      [showXAxis]="true"
+      [showYAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [xAxisLabel]="'Time'"
+      [yAxisLabel]="'Number of Alerts'"
+      [tooltipDisabled]="false"
+      [scheme]="colorScheme"
+      class="my-line-chart">
+    </ngx-charts-line-chart>
+  </div>
+   <div class="chart-box">
+    <h2 class="chart-title">State Distribution of Alerts</h2>
+    <ngx-charts-pie-chart
+      [view]="[500, 250]"
+      [results]="stateDistribution"
+      [legend]="true"
+      [explodeSlices]="false"
+      [showLabels]="true"
+      [scheme]="colorScheme"
+      [doughnut]="true"
+      class="my-doughnut-chart">
+    </ngx-charts-pie-chart>
+  </div>
+  <div class="chart-box">
+    <h2 class="chart-title">Number of Alerts by Alert Name</h2>
+    <ngx-charts-bar-vertical
+      [view]="[510, 250]"
+      [results]="alertNameDistribution"
+      [legend]="true"
+      [showXAxis]="true"
+      [showYAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [tooltipDisabled]="false"
+      [xAxisLabel]="'Alert Name'"
+      [yAxisLabel]="'Number of Alerts'"
+      [scheme]="colorScheme"
+      class="my-bar-chart">
+    </ngx-charts-bar-vertical>
+  </div>
+  <div class="chart-box">
+    <h2 class="chart-title">Severity Distribution Gauge</h2>
+    <ngx-charts-gauge
+      [view]="[400, 300]"
+      [min]="0"
+      [max]="100"
+      [scheme]="colorScheme"
+      [results]="[{ name: 'Severity', value: gaugeValue }]"
+      [angleSpan]="240"
+      [startAngle]="-120"
+      [units]="'Warnings'"
+      [bigSegments]="10"
+      [smallSegments]="5"
+      class="my-gauge-chart">
+    </ngx-charts-gauge>
+  </div>
+  <div class="chart-box">
+    <h2 class="chart-title">Number of Alerts by Severity</h2>
+    <ngx-charts-bar-vertical
+      [view]="[510, 250]"
+      [results]="severityDistribution"
+      [legend]="true"
+      [showXAxis]="true"
+      [showYAxis]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxisLabel]="'Severity'"
+      [yAxisLabel]="'Number of Alerts'"
+      [scheme]="colorScheme"
+      class="my-bar-chart">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>
+
+
+
+
+
+<ng-template #tooltipTemplate let-model="model">
+  <span>{{model.name}}: {{model.value}}</span>
+</ng-template>
+  </section>
+
+
+    </main>
+
+    <!-- MAIN -->
+  </section>
+  <!-- CONTENT -->
+  </body>
+
+

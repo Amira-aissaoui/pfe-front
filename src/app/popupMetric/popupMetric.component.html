@@ -1,0 +1,46 @@
+<div class="overlay-container">
+  <form class="overlay">
+    <span class="material-icons" id="close" (click)="closeModal()">close</span>
+    <div class="contenuelpopup">
+      <br>
+      <h2>Add Metric</h2>
+      <label><b>Metric</b></label>
+      <br>
+      <input type="text" class="ipaddr" [(ngModel)]="metricName" name="metric" placeholder="Add Metric">
+      <br>
+      <br>
+      <label><b>Panel Name</b></label>
+      <br>
+      <input type="text" class="ipaddr" [(ngModel)]="panelName" name="panelName" placeholder="Add Panel Name">
+      <br>
+      <br>
+      <button class="btn" (click)="checkMetricc()" id="test">Check Metric</button>
+      <button class="btn" (click)="clearMetrics()" id="test"> Add Metric</button>
+      <button class="btn" (click)="clearMetrics()" id="test"> Clear Metric</button>
+    
+      <svg xmlns="http://www.w3.org/2000/svg"  *ngIf="isMetricAvailable"  color="red"  class="failicon" width="50" height="35" viewBox="0 0 50 32"><path fill="currentColor" d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2zm0 26C9.4 28 4 22.6 4 16S9.4 4 16 4s12 5.4 12 12s-5.4 12-12 12z"/><path fill="currentColor" d="M21.4 23L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="failed" *ngIf="isMetricAvailable"  class="failicon" color="green" width="32" height="34" viewBox="0 0 24 24"><path fill="currentColor" d="m2.394 13.742l4.743 3.62l7.616-8.704l-1.506-1.316l-6.384 7.296l-3.257-2.486zm19.359-5.084l-1.506-1.316l-6.369 7.279l-.753-.602l-1.25 1.562l2.247 1.798z"/></svg>
+
+      <button class="btn" *ngIf="isMetricAvailable" (click)="chooseChart()">Choose Chart</button>
+
+    </div>
+  </form>
+
+  <div class="toast" id="toast-message"></div>
+
+  
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

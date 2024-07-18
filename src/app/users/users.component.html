@@ -1,0 +1,378 @@
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+    <a  class="brand">
+    </a>
+    <ul class="side-menu top">
+      <li >
+        <a href="/home">
+          <i class='bx bxs-dashboard' ></i>
+          <span class="text">Home</span>
+        </a>
+      </li>
+      <li >
+        <a href="/profile">
+          <i class='bx bxs-user' ></i>
+          <span class="text">Profile</span>
+        </a>
+      </li>
+      <li  class="active" >
+        <a href="/administration">
+          <i class='bx bxs-folder' ></i>
+          <span class="text">Administration</span>
+        </a>
+      </li>
+   
+
+    </ul>
+    <ul class="side-menu">
+
+      <li>
+        <a (click)="logout()" class="logout">
+          <i class='bx bxs-log-out-circle' ></i>
+          <span class="text">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <!-- SIDEBAR -->
+
+
+
+  <!-- CONTENT -->
+  <section id="content">
+    <!-- NAVBAR -->
+    <nav>
+      <i (click)="addToggle()" class='bx bx-menu' ></i>
+   
+      <a  class="brand">
+        <span class="text"><h3> AES Monitoring Platform</h3></span>
+
+      </a>
+      <form></form>
+        <div class="menuitems">
+      <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+      
+    </div>
+    </nav>
+    <!-- NAVBAR -->
+
+
+    <!-- MAIN -->
+
+
+    <main>
+      <div class="head-title">
+        <div class="left">
+
+          <h1> Monitoring Platform Users</h1>
+
+          <ul class="breadcrumb">
+            <li>
+              <a href="/home">Home</a>
+
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+              <a  href="/administration">Administration</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+              <a class="active" >User Management</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+   
+
+    </main>
+    <!-- MAIN -->
+    <div (click)="createUser()" >
+    <a   class="btn-download2"  >
+        <i class='bx bxs-cloud-download' ></i>
+        <span class="text">Add a New User</span>
+      </a>
+      <button (click)="createUser()" > </button>
+    </div>
+  </section>
+
+  <div class="usertable" *ngIf="!seeProjects">
+<h2 id="tabletitle">Users</h2>
+
+<div class="container">
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">ID</div>
+        <div class="col col-2">First Name</div>
+        <div class="col col-2">Last Name</div>
+
+        <div class="col col-2">Email</div>
+        <div class="col col-3">Role</div>
+
+        <div class="col col-4">Action</div>
+      </li>
+          <li class="table-row" *ngFor="let user of usersList let i=index">
+
+            <div class="col col-1" data-label="Job Id">{{i +1}}</div>
+            <div class="col col-2" data-label="Customer Name">{{ user.firstname }} </div>
+            <div class="col col-2" data-label="Customer Name">{{ user.lastname }}</div>
+
+            <div class="col col-2" data-label="Customer Name">{{ user.email }}</div>
+            <div class="col col-3" data-label="Customer Name">{{ user.role }}</div>
+
+
+        <div class="col col-4" data-label="Payment Status">
+                <div class="lemenuaction">
+                  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                 
+                    <button mat-menu-item (click)="getUser(user);openDialog2()">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit Information</span>
+                      </button>
+                    <button mat-menu-item  (click)="getSelectedEmail(user.email) ; openDialog4()">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                  
+               
+                 
+                  </mat-menu>
+                </div>
+        </div>
+      </li>
+     
+</ul>
+  </div>
+
+</div>
+
+<div *ngIf="seeProjects">
+  <div class="container">
+    <h2 class="title">Projects Associated to "USERNAME"</h2>
+<div class="goBack" (click)="goBack()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"/><path fill="currentColor" d="M7.16 10.972A7 7 0 0 1 19.5 15.5a1.5 1.5 0 1 0 3 0c0-5.523-4.477-10-10-10a9.973 9.973 0 0 0-7.418 3.295L4.735 6.83a1.5 1.5 0 1 0-2.954.52l1.042 5.91c.069.391.29.74.617.968c.403.282.934.345 1.385.202l5.644-.996a1.5 1.5 0 1 0-.52-2.954l-2.788.491Z"/></g></svg>
+</div>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">ID</div>
+        <div class="col col-2">Project Name</div>
+        <div class="col col-2">Role</div>
+
+        <div class="col col-4">Action</div>
+      </li>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id">01</div>
+        <div class="col col-2" data-label="Customer Name">John Doe</div>
+        <div class="col col-2" data-label="Customer Name">Viewer</div>
+
+
+        <div class="col col-4" data-label="Payment Status">
+                <div class="lemenuaction">
+                  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialog3()">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit Role</span>
+                    </button>
+                    <button mat-menu-item  (click)="openDialog5()">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+
+                  </mat-menu>
+                </div>
+        </div>
+      </li>
+     
+    </ul>
+  </div>
+ 
+</div>
+
+
+<div class="dialog0-container" *ngIf="showDialog2" >
+    <div class="dialog0-content" >
+      <h2 class="dialog0-title">Editing User</h2> <!-- update user exp: user.firstname -->
+      <form [formGroup]="userForm" (ngSubmit)="editUser()">
+
+        <input id="teamname" text="Username" placeholder="New First Name" formControlName="firstname" required>
+        <!--
+        <div *ngIf="userForm.get('firstname').hasError('required')">
+          First name is required.
+        </div>
+  -->
+        <br>
+        <br>
+  
+        <input id="teamname" text="Username" placeholder="New Last Name" formControlName="lastname" required>
+        <!--
+        <div *ngIf="userForm.get('lastname').hasError('required')">
+          Last name is required.
+        </div> -->
+  
+        <br>
+        <br>
+  
+
+
+
+        <input id="teamname" text="email" placeholder="New Email" formControlName="email" required type="email">  <!--
+        <div *ngIf="userForm.get('email').hasError('required')">
+          Email is required.
+        </div>
+        <div *ngIf="userForm.get('email').hasError('email')">
+          Please enter a valid email address.
+        </div>  -->
+  
+        <br>
+        <br>
+  
+        <input id="teamname" text="email" placeholder="New Password" formControlName="password">
+        <br>
+        <br>
+  
+        <div class="roleedit">
+          <b>
+            <label>Edit Role</label>
+          </b>
+          <br>
+          <mat-form-field>
+            <select matNativeControl required id="selectlist" formControlName="role">
+              <option value="Admin">Admin</option>
+              <option value="Manager">Manager</option>
+              <option value="User">User</option>
+            </select>
+          </mat-form-field>
+        </div>
+  
+        <div class="dialog-buttons">
+          <button mat-button [disabled]="userForm.invalid">Edit</button>
+          <button mat-button (click)="closeDialog2()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+      <!--
+      <br>
+      <input id="teamname" text="Username" placeholder="New First Name" [(ngModel)]="user.firstname" >
+      <br>
+      <br>
+      <input id="teamname" text="Username" placeholder="New Last Name" [(ngModel)]="user.lastname">
+      <br>
+      <br>
+      <input id="teamname" text="email" placeholder="New Email" [(ngModel)]="user.email">
+      <br>
+      <br>
+      <input id="teamname" text="email" placeholder="New Password" [(ngModel)]="password">
+      <br>
+      <br>
+      <div class="roleedit">
+
+      <b>
+      <label>Edit Role</label>
+    </b> 
+      <br>
+      <mat-form-field >
+        <select matNativeControl required id="selectlist"  [(ngModel)]="User.Role">
+          <option >Admin</option>
+          <option >Manager</option>
+          <option >User</option>
+        </select>
+      </mat-form-field>
+
+    </div>
+
+      <div class="dialog-buttons">
+        <button mat-button (click)="editUser()">Edit</button>
+        <button mat-button (click)="closeDialog2()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  -->
+
+  
+  <div class="dialog2-container" *ngIf="showDialog3" >
+    <div class="dialog2-content" >
+      <h2 class="dialog2-title">Editing Permission</h2>
+  <br>
+  <br>
+      <b>
+      <label>Permission</label>
+      <br></b>
+      <mat-form-field >
+        <select matNativeControl required id="selectlist">
+          <option >Viewer</option>
+          <option >Editor</option>
+        </select>
+      </mat-form-field>
+
+
+
+      <div class="dialog-buttons">
+        <button mat-button >Edit</button>
+        <button mat-button (click)="closeDialog3()">Cancel</button>
+      </div>
+    </div>
+  </div>
+    
+  <div class="dialog-container" *ngIf="showDialog4" >
+    <div class="dialog-content" >
+      <h2 class="dialog-title">Delete Confirmation</h2>
+      <label>Are you sure you want to delete this user </label>
+
+
+      <div class="dialog-buttons">
+        <button mat-button (click)="deleteUser()">Delete</button>
+        <button mat-button (click)="closeDialog4()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-container" *ngIf="showDialog5" >
+    <div class="dialog-content" >
+      <h2 class="dialog-title">Delete Confirmation</h2>
+
+      <label>Are you sure you want to remove this user from the project</label>
+    
+
+
+      <div class="dialog-buttons">
+        <button mat-button >Delete</button>
+        <button mat-button (click)="closeDialog5()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- CONTENT -->
+  <div class="toasts">
+  <div class="toast3" id="toast-message3"></div>
+
+  <div class="toast4" id="toast-message4"></div>
+  <div class="toast2" id="toast-message2"></div>
+  <div class="toast5" id="toast-message5"></div>
+  <div class="toast6" id="toast-message6"></div>
+
+</div>

@@ -1,0 +1,221 @@
+body {
+    font-family: 'lato', sans-serif;
+}
+.container {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.responsive-table li {
+    border-radius: 10px;
+    padding: 25px 30px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.responsive-table .table-header {
+    background-color: #00ae4e;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.responsive-table .table-row {
+    background-color: #fff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+.responsive-table .col-1 {
+    flex-basis: 10%;
+}
+.responsive-table .col-2 {
+    flex-basis: 40%;
+}
+.responsive-table .col-3 {
+    flex-basis: 35%;
+}
+.responsive-table .col-4 {
+    flex-basis: 10%;
+}
+@media all and (max-width: 767px) {
+    .responsive-table .table-header {
+        display: none;
+   }
+    .responsive-table li {
+        display: block;
+   }
+    .responsive-table .col {
+        flex-basis: 100%;
+   }
+    .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+   }
+    .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+   }
+}
+.lemenuaction{
+    position: fixed;
+    margin-top: -1rem;
+    height: 6.7%;
+    margin-left: -3rem;
+}
+.example-button-row button,
+.example-button-row a {
+position: fixed;
+margin-top: -0.9rem;    
+
+}
+#role{
+}
+
+.example-disabled {
+  display: inline-block;
+}
+#enabled {
+    background-color: #00ae4e;
+    margin-left: 1rem;
+}
+.example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+  .publicandprivate{
+    margin-left: 17%;
+  } 
+
+  .custom-select {
+    font-size: 16px; /* Set the desired font size */
+    padding:  -5rem; /* Set the desired padding */
+    height:5px; /* Set the desired height */
+  }
+  .permissiontable{
+    margin-left: 18%;
+  }
+  .custom-tab-group {
+    font-size: 14px; /* Set the desired font size */
+    width: 80%;
+  }
+  .btn2 {
+    background-color: #00ae4e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
+    }
+
+    .example-form {
+        min-width: 150px;
+        max-width: 500px;
+        width: 100%;
+      }
+      
+      .example-full-width {
+        width: 100%;
+      }
+      
+      .btn3 {
+        background-color: #c55a5a;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 2px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        margin-right: 0.5rem;
+        }
+        
+        #rmv:hover {
+        background-color: #d90700;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .custom-select .mat-select-panel {
+          position: fixed !important;
+          z-index: 10000; /* Increase the z-index value to make it appear on top */
+        }
+        
+
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .dialog-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .dialog-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .dialog-buttons button {
+    margin-left: 10px;
+  }
+
+  #selectlist {
+    /* Add your custom styles here */
+    width: 180px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  #selectlist:focus {
+    outline: none;
+    border-color: #5c6ac4;
+    box-shadow: 0 0 0 4px rgba(92, 106, 196, 0.3);
+  }
+  
+  .mat-form-field .mat-form-field-infix {
+    padding-top: 10px; /* Adjust the top padding as needed */
+  }
+  #bouttonnn{
+    color: #00ae4e;
+    background-color: blue; /* Adjust the underline color as needed */
+
+  }

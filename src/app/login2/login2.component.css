@@ -1,0 +1,635 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+
+
+
+*,*:before,*:after{box-sizing:border-box}
+
+
+
+
+body{
+
+  min-height:100vh;
+
+  font-family: 'Raleway', sans-serif;
+
+}
+
+
+
+
+.container{
+
+  position:absolute;
+
+  width:100%;
+
+  height:100%;
+
+  overflow:hidden;
+
+}
+
+
+
+
+.container:hover .top:before, .container:hover .bottom:before, .container:hover .top:after, .container:hover .bottom:after{
+
+  margin-left: 200px;
+
+  transform-origin: -200px 50%;
+
+  transition-delay:0s;
+
+}
+
+
+
+
+.container:hover .center{
+
+  opacity:1;
+
+  transition-delay:0.2s;
+
+}
+
+
+
+
+.top:before{
+
+  content:'';
+
+  display:block;
+
+  position:absolute;
+
+  width:200vmax;
+
+  height:200vmax;
+
+  top:50%;
+
+  left:50%;
+
+  margin-top:-100vmax;
+
+  transform-origin: 0 50%;
+
+  transition:all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+
+  z-index:10;
+
+  opacity:0.65;
+
+  transition-delay:0.2s;
+
+  transform:rotate(45deg);
+
+  background:#4CAF50; /* Green */
+
+}
+
+
+
+
+.top:after{
+
+  content:'';
+
+  display:block;
+
+  position:absolute;
+
+  width:200vmax;
+
+  height:200vmax;
+
+  top:50%;
+
+  left:50%;
+
+  margin-top:-100vmax;
+
+  transform-origin: 0 50%;
+
+  transition:all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+
+  z-index:10;
+
+  opacity:0.65;
+
+  transition-delay:0.2s;
+
+  transform:rotate(135deg);
+
+  background:#BDBDBD; /* Grey */
+
+}
+
+
+
+
+.bottom:before{
+
+  content:'';
+
+  display:block;
+
+  position:absolute;
+
+  width:200vmax;
+
+  height:200vmax;
+
+  top:50%;
+
+  left:50%;
+
+  margin-top:-100vmax;
+
+  transform-origin: 0 50%;
+
+  transition:all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+
+  z-index:10;
+
+  opacity:0.65;
+
+  transition-delay:0.2s;
+
+  transform:rotate(-45deg);
+
+  background:#4CAF50; /* Green */
+
+}
+
+
+
+
+.bottom:after{
+
+  content:'';
+
+  display:block;
+
+  position:absolute;
+
+  width:200vmax;
+
+  height:200vmax;
+
+  top:50%;
+
+  left:50%;
+
+  margin-top:-100vmax;
+
+  transform-origin: 0 50%;
+
+  transition:all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+
+  z-index:10;
+
+  opacity:0.65;
+
+  transition-delay:0.2s;
+
+  transform:rotate(-135deg);
+
+  background:#BDBDBD;
+
+}
+
+h1{
+  margin-left: 35%;
+  margin-top: 5.5%;
+  font-size: 50px;
+  color: #4CAF50;
+}
+
+
+.center {
+
+  position: absolute;
+
+  width: 400px;
+
+  height: 400px;
+
+  top: 50%;
+
+  left: 50%;
+
+  margin-left: -200px;
+
+  margin-top: -200px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  opacity: 0;
+
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+
+  transition-delay: 0s;
+
+}
+
+.modal__btn {
+
+  margin-top: 4rem;
+
+  padding: 1rem 3rem;
+
+  border-radius: 50rem;
+
+  color: inherit;
+
+  background: transparent;
+
+  font-size: 1.4rem;
+
+  font-family: inherit;
+
+  letter-spacing: .2rem;
+
+
+
+
+  transition: .2s;
+
+  cursor: pointer;
+
+}
+
+
+
+
+.lbox{
+
+  width: 300px;
+
+  height: 30px;
+
+}
+
+.logo{
+
+  width: 260px;
+
+  margin-left: 25px;
+
+}
+
+*,
+
+*:before,
+
+*:after{
+
+    padding: 0;
+
+    margin: 0;
+
+    box-sizing: border-box;
+
+}
+
+body{
+
+  background-color: #EDF4F5
+
+  ;
+
+
+
+
+}
+
+
+
+
+.form{
+
+  background-color: #eeeeee2f;
+
+
+
+
+
+}
+
+h2{
+
+  position: center;
+
+  margin-left: 38%;
+
+}
+
+.background{
+
+    width: 430px;
+
+    height: 520px;
+
+    position: absolute;
+
+    transform: translate(-50%,-50%);
+
+    left: 50%;
+
+    top: 50%;
+
+}
+
+.background .shape{
+
+    height: 200px;
+
+    width: 200px;
+
+    position: absolute;
+
+
+
+
+    border-radius: 15%;
+
+}
+
+.shape:first-child{
+
+    background: linear-gradient(
+
+        #0f121a,
+
+        #667a88
+
+    );
+
+    left: -80px;
+
+    top: -65px;
+
+    animation: moveShapes 10s infinite;
+
+
+
+
+}
+
+.shape:last-child{
+
+    background: linear-gradient(
+
+        to right,
+
+        #32df7a,
+
+        #042b1f
+
+    );
+
+    right: -30px;
+
+    bottom: -80px;
+
+    animation: moveShape3 8s linear infinite; /* Adjust animation duration as needed */
+
+
+
+
+}
+
+
+
+
+form{
+
+    height: 600px;
+
+    width: 400px;
+
+    background-color: rgba(255,255,255,0.13);
+
+    position: absolute;
+
+    transform: translate(-50%,-50%);
+
+    top: 50%;
+
+    left: 50%;
+
+    border-radius: 10px;
+
+    backdrop-filter: blur(10px);
+
+    border: 2px solid rgba(255,255,255,0.1);
+
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+
+    padding: 60px 35px;
+
+}
+
+form *{
+
+    font-family: 'Poppins',sans-serif;
+
+    color: #546472
+
+
+
+    ;
+
+    letter-spacing: 0.5px;
+
+    outline: none;
+
+    border: none;
+
+}
+
+form h3{
+
+    font-size: 32px;
+
+    font-weight: 500;
+
+    line-height: 42px;
+
+    text-align: center;
+
+}
+
+
+
+
+label{
+
+    display: block;
+
+    margin-top: 30px;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+}
+
+input{
+
+    display: block;
+
+    height: 50px;
+
+    width: 100%;
+
+    background-color: rgba(255,255,255,0.07);
+
+    border-radius: 3px;
+
+    padding: 0 10px;
+
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    font-weight: 300;
+
+}
+
+::placeholder{
+
+    color: #e5e5e5;
+
+}
+
+button{
+
+    margin-top: 50px;
+
+    width: 100%;
+
+    background-color: #667a88;
+    color: white;
+
+    padding: 15px 0;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+.social{
+
+  margin-top: 30px;
+
+  display: flex;
+
+}
+
+.social div{
+
+  background: red;
+
+  width: 150px;
+
+  border-radius: 3px;
+
+  padding: 5px 10px 10px 5px;
+
+  background-color: rgba(255,255,255,0.27);
+
+  color: #eaf0fb;
+
+  text-align: center;
+
+}
+
+.social div:hover{
+
+  background-color: rgba(255,255,255,0.47);
+
+}
+
+.social .fb{
+
+  margin-left: 25px;
+
+}
+
+.social i{
+
+  margin-right: 4px;
+
+}
+
+
+
+
+
+
+
+
+/* Center the text in the snackbar */
+
+.simple-snack-bar .mat-simple-snackbar {
+
+  text-align: center;
+
+}
+
+
+
+
+/* Apply your custom styles for the success snackbar */
+
+.toast-success {
+
+  background-color: green;
+
+  color: white;
+
+}
+
+
+
+
+/* Apply your custom styles for the failed snackbar */
+
+.toast-failed {
+
+  background-color: red;
+
+  color: white;
+
+}
+
+.my-custom-snackbar {
+
+  margin: 0 !important;
+
+  position: absolute;
+
+  right: 25px;
+
+  top: 60px;
+
+}

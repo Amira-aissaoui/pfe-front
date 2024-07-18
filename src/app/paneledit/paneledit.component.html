@@ -1,0 +1,159 @@
+<div class="overlay-container">
+
+  <form class="overlay" >
+  
+    <h2 class="paneledit">Panel Edit</h2>
+    <br>
+    <label><b>Panel Name</b></label>
+  <br>
+  <input type="text" name="panelNewName" [(ngModel)]="panelNewName" placeholder="Name">
+  <br>
+  <br>
+  <div class="panel-expression">
+    <label><b>Panel Expression:</b></label>
+    <p>{{ PanelExpr }}</p>
+    </div>
+
+  <br>
+    <br>
+
+    <label><b>Panel Chart</b></label>
+    <br>
+
+    <br>
+
+   
+    <div  >
+      <mat-tab-group class="charts">
+        <mat-tab label="Bar Chart">
+          <ng-template matTabContent>
+            <ngx-charts-bar-vertical 
+          
+            [view]="[200,200]"
+            [results]="saleData"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [gradient]="true">
+            </ngx-charts-bar-vertical>
+          <button (click)="barchart=!barchart; getTheNewChart()" [ngClass]="{'selected': selectedChartType === 'barchart'}">Select This Chart</button>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Pie Chart">
+                                <ng-template matTabContent>
+                                  <ngx-charts-pie-chart 
+                        [results]="saleData"
+                        [legend]="false"
+                        [view]="[700,300]"
+                        >
+                    </ngx-charts-pie-chart>
+            <button (click)="piechart=!piechart; getTheNewChart()" [ngClass]="{'selected': selectedChartType === 'piechart'}">Select This Chart</button>
+      
+          
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Gauge Chart">
+          <ng-template matTabContent>
+          
+        <ngx-charts-gauge
+        [results]="saleData"
+        [legend]="false"
+        [view]="[1000,300]">
+        
+        </ngx-charts-gauge>
+        <button (click)="gaugechart=!gaugechart; getTheNewChart()" [ngClass]="{'selected': selectedChartType === 'gauge'}">Select This Chart</button>
+
+          
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Line Chart">
+          <ng-template matTabContent>
+            <ngx-charts-line-chart
+            [results]="lineData"
+            [legend]="true"
+            [view]="[700,300]"
+            >
+
+            </ngx-charts-line-chart>
+          
+
+            <button (click)="linechart=!linechart; getTheNewChart()" [ngClass]="{'selected': selectedChartType === 'linechart'}">Select This Chart</button>
+
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="XY Chart">
+          <ng-template matTabContent>
+              <ngx-charts-bubble-chart
+              [results]="bubledata"
+              [view]="[700,300]"
+              [showYAxisLabel]="true"
+              [yAxis]="true"
+              >
+              
+            </ngx-charts-bubble-chart>
+        
+          
+              <button (click)="xychart=!xychart; getTheNewChart()" [ngClass]="{'selected': selectedChartType === 'xychart'}">Select This Chart</button>
+
+          
+          </ng-template>
+        </mat-tab>
+    
+        <mat-tab label="Stat Chart">
+          <ng-template matTabContent>
+
+            <ngx-charts-linear-gauge
+            [view]="[400,300]"
+            [value]="value"
+            [previousValue]="previousValue"
+            [units]="units">
+          </ngx-charts-linear-gauge>
+          <button (click)="statchart=!statchart; getTheNewChart()" [ngClass]="{'selected': selectedChartType === 'stat'}">Select This Chart</button>
+
+
+        </ng-template>
+        </mat-tab>
+        <mat-tab label="Horizental Chart">
+          <ng-template matTabContent>
+
+          <ngx-charts-bar-horizontal-stacked
+          [results]="horizdata"
+          [view]="[700,300]"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+
+          ></ngx-charts-bar-horizontal-stacked>
+            
+          <button (click)="horizchart=!horizchart; getTheNewChart()" [ngClass]="{'selected': selectedChartType === 'state-timeline'}">Select This Chart</button>
+
+        </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+      </div>
+
+    
+
+    <br>
+  <br>
+  <br>
+
+<div class="container">
+  <div class="btnpanel" (click)="closeModal()"><a>Cancel</a></div>
+
+  <div class="btnpanel"  (click)="onSubmit()"><a >Save</a></div>
+
+
+</div>
+<br>
+
+
+    <br>
+  </form>
+
+
+
+</div>
+

@@ -1,0 +1,248 @@
+
+  .pie {
+    --p:20;
+    --b:22px;
+    --c:darkred;
+    --w:150px;
+
+    width:var(--w);
+    aspect-ratio:1;
+    position:relative;
+    display:inline-grid;
+    margin:5px;
+    place-content:center;
+    font-size:25px;
+    font-weight:bold;
+    font-family:sans-serif;
+  }
+  .pie:before,
+  .pie:after {
+    content:"";
+    position:absolute;
+    border-radius:50%;
+  }
+  .pie:before {
+    inset:0;
+    background:
+      radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
+      conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+    -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+            mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+  }
+  .pie:after {
+    inset:calc(50% - var(--b)/2);
+    background:var(--c);
+    transform:rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
+  }
+  .animate {
+    animation:p 1s .5s both;
+  }
+  .no-round:before {
+    background-size:0 0,auto;
+  }
+  .no-round:after {
+    content:none;
+  }
+  @keyframes p {
+    from{--p:0}
+  }
+
+  body {
+    background:#ddd;
+  }
+
+
+
+  .projectcontainer{
+    margin-left: 40%;
+    position: relative;
+
+  }
+
+
+  .btn-download3 {
+    height: 40px;
+    width: 300px;
+    padding: 10px 18px;
+    border-radius: 36px;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 400;
+    left : 86%;
+    background-color: #00ae4e;
+
+    margin-left: -380px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .btn-download3:hover {
+    background-color: #b5e4b5;
+  }
+
+
+  .btn-download5 {
+    height: 40px;
+    width: 300px;
+    padding: 10px 18px;
+    border-radius: 36px;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 400;
+    left : 86%;
+    background-color: #00ae4e;
+
+    margin-left: -580px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .btn-download3:hover {
+    background-color: #b5e4b5;
+  }
+
+
+
+
+
+  .btn-download2 {
+    height: 40px;
+    width: 300px;
+    padding: 10px 18px;
+    border-radius: 36px;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 400;
+    left : 86%;
+    background-color: #00ae4e;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-left: 700px;
+    transition: all 0.3s ease;
+  }
+  .btn-download2:hover {
+    background-color: #b5e4b5;
+  }
+
+
+
+
+
+
+  .abc {
+
+    top: 80px;  /* Adjust vertical position */
+    position:fixed;
+    width: 45%;
+    left: 1250px;   /* Adjust horizontal position */
+    left: calc(55% - 10px);  /* Positions image on right side */
+  }
+
+  h4 {
+    color: #030303;
+    font-size: 20px;
+    line-height: 1.5;
+  
+    text-align: center;
+    margin-left: -1500px;
+    text-indent: 1px;
+  }
+  
+  h5 {
+    color: #030303;
+    font-size: 20px;
+    line-height: 1.5;
+  
+    text-align: center;
+    margin-left: -750px;
+    text-indent: 1px;
+  }
+
+
+.paragraph11{
+  color: rgb(105, 105, 105);
+}
+  .paragraph1 {
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: center;
+    margin-left: -1500px;
+    text-indent: 2px;
+    color:#546472
+
+;  }
+
+  .toasts{
+    margin-top: 20px;
+  }
+  .addpopup{
+    margin-top: 10%;
+    overflow:auto;
+  }
+
+  .btn-download:hover {
+    background-color: #65BC47
+
+    ;
+  }
+  
+.userprojects{
+  background-color:#20b2aa;
+}
+
+  .dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+
+  .dialog-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .dialog-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .dialog-buttons button {
+    margin-left: 10px;
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #4CAF50; /* Customize the checkbox color */
+    margin: 0; /* Adjust margin as needed */
+    padding: 0; /* Adjust padding as needed */
+    vertical-align: middle; /* Align checkbox vertically in the table cell */
+  }
+
+  
+  
+  

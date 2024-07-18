@@ -1,0 +1,259 @@
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a  class="brand"></a>
+  <ul class="side-menu top">
+    <li [class.active]="selectedItem === 0" (click)="selectItem(1)">
+      <a href="/dashboard">
+        <i class='bx bxs-dashboard'></i>
+        <span class="text">Project OverView</span>
+      </a>
+    </li>
+    <li [class.active]="selectedItem === 2" (click)="selectItem(2);goRules()"  *ngIf="isAlerting">
+      <a href="/rules ">
+        <i class='bx bxs-shopping-bag-alt'></i>
+        <span class="text">Rules</span>
+      </a>
+    </li>
+
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="/projectsettings"  *ngIf="isUserManager === 'MANAGER'" >
+        <i class='bx bxs-cog'></i>
+        <span class="text">Settings</span>
+      </a>
+    </li>
+    <li>
+      <a (click)="logout()" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i (click)="addToggle()" class='bx bx-menu'></i>
+    <form >
+
+    </form>
+
+
+    <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+  </nav>
+  <!-- NAVBAR -->
+
+  <br>
+
+    <!-- MAIN -->
+    <main>
+
+      <div class="head-title">
+        <div class="left">
+          <h1>{{this.projectName}}</h1>
+          <ul class="breadcrumb">
+            <li>
+              <a >Project</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+
+              <a class="active" *ngIf='appType==="Monolithic app"' >
+
+                  {{appType}}
+                </a>
+
+              <div *ngIf='appType!=="Monolithic app"'>
+                  <a class="active" >
+                  <button mat-button [matMenuTriggerFor]="menu">
+                  {{appType}}
+                    </button>
+                  <mat-menu  #menu="matMenu" >
+                    <button mat-menu-item *ngFor="let service of items;let ms of microservicesnames ;let i = index" (click)="getTheSelectedMs(i+1)">
+                      <a> {{ms}}</a>
+                      </button>
+                  </mat-menu>
+
+
+                  
+                </a>
+              </div>
+              <mat-form-field class="amira">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Start date" (dateChange)="onStartDateChange($event)">
+                  <input matEndDate placeholder="End date" (dateChange)="onEndDateChange($event)">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+              <button mat-raised-button class="a" color="primary" (click)="updateCalendar()">Update Calendar</button>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+
+
+
+
+
+
+
+
+            </li>
+            <div *ngIf='showMs && appType!=="Monolithic app"'>
+              <li >
+              <i class='bx bx-chevron-right' >
+                <a class="active" >
+                  <b>
+                    {{selectedMicroservice}}</b>  </a>
+
+              </i>
+            </li>
+
+
+            </div>
+
+
+          </ul>
+        </div>
+
+
+
+      </div>
+
+      <ul class="box-info">
+        <li *ngIf=" nbms != 1">
+          <i class='bx bxs-calendar-check' ></i>
+          <span class="text">
+            <h3>{{nbms}}</h3>
+            <p>Microservices</p>
+            
+          </span>
+        </li>
+
+      </ul>
+
+<br>
+<h3>Generic Project Metrics OverView</h3>
+<div   class="table-data" #panel>
+
+  <div   *ngFor="let url of urlList2" class="iframe-container">
+    <div class="order">
+     <div class="head" *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'">
+        <i class='bx bx-edit' (click)="editPanel(url)"></i>
+        <app-paneledit *ngIf="editOK | async" [PanelId]="getPanelId(url)" (closed)="editOK.next(false)"></app-paneledit>
+
+
+
+
+
+
+
+        
+<!--
+       <app-paneledit *ngIf="editOK"
+        [PanelId]="getPanelId(url)"  (closed)="editOK =false"></app-paneledit>
+  -->
+
+        <i class='bx bx-trash' (click)="deletePanel(url)"></i>
+      </div>
+    </div>
+    <iframe [src]="url" width="770" height="300" frameborder="0" ></iframe>
+  </div>
+</div>
+<br>
+
+<h3 *ngIf="appType !== 'Monolithic app'">Microservice Metrics OverView</h3>
+
+<h3 *ngIf="appType === 'Monolithic app'">System Selected Metrics OverView</h3>
+
+<div class="table-data" #panel>
+
+  <div *ngFor="let url of urlList;" >
+    <div class="order">
+
+      <div class="head" *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'">
+
+        <i class='bx bx-edit' (click)="editPanel(url)"></i>
+
+        <app-paneledit *ngIf="editOK | async" [PanelId]="getPanelId(url)" (closed)="editOK.next(false)"></app-paneledit>
+
+
+
+
+
+
+        <i class='bx bx-trash' (click)="deletePanel(url)"></i>
+
+
+      </div>
+
+    </div>
+
+    <div  >
+
+      <div class="inner-div" >
+
+        <iframe [src]="url" frameborder="0" allowfullscreen [style.width.px]="panelSizes[i].width" [style.height.px]="panelSizes[i].height"></iframe>
+
+      </div>
+
+    </div>
+
+</div>
+</div>
+
+<div class="floating-container" *ngIf="userRole === 'EDITOR' || isUserManager === 'MANAGER'">
+  <div class="floating-button">+</div>
+  <div class="element-container">
+    <span class="float-element">
+      <div id="dashboard-content" #myElement>
+      </div>
+<button (click)="printPage() "></button>
+<i class="material-icons" (click)="printPage() ">file_download</i>
+    </span>
+
+    <span class="float-element">
+      <i class="material-icons" (click)="addPanel()">add</i>
+    </span>
+
+  </div>
+</div>
+
+
+
+
+<!-- ... -->
+
+
+<!-- ... -->
+
+
+    </main>
+    <!-- MAIN -->
+    
+  </section>
+  <!-- CONTENT -->

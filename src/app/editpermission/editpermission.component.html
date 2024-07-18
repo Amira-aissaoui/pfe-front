@@ -1,0 +1,384 @@
+
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a  class="brand">
+  </a>
+  <ul class="side-menu top">
+    <li >
+      <a href="/home">
+        <i class='bx bxs-dashboard' ></i>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li >
+      <a href="/profile">
+        <i class='bx bxs-user' ></i>
+        <span class="text">Profile</span>
+      </a>
+    </li>
+    <li  class="active" >
+      <a href="/manageprojects">
+        <i class='bx bxs-folder' ></i>
+        <span class="text">Administration</span>
+      </a>
+    </li>
+ 
+
+
+  </ul>
+  <ul class="side-menu">
+ 
+    <li>
+      <a (click)="logout()" class="logout">
+        <i class='bx bxs-log-out-circle' ></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+
+
+<div class="dialog-container" *ngIf="dialog4" >
+  <div class="dialog-content">
+    <h2 class="dialog-title">Delete Confirmation</h2>
+    <p>Are you sure you want to delete this user from the project.</p>
+    <div class="dialog-buttons">
+      <button mat-button (click)="deleteUser()">Delete</button>
+      <button mat-button (click)="closeDialog4()">Cancel</button>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i (click)="addToggle()" class='bx bx-menu' ></i>
+ 
+    <a  class="brand">
+      <span class="text"><h3> AES Monitoring Platform</h3></span>
+
+    </a>
+    <form></form>
+      <div class="menuitems">
+    <i class="bx bxs-home custom-icon" (click)="goHome()"></i>
+    
+  </div>
+  </nav>
+  <!-- NAVBAR -->
+
+
+  <!-- MAIN -->
+
+
+  <main>
+    <div class="head-title">
+      <div class="left">
+
+        <h1>Editing Permissions</h1>
+
+        <ul class="breadcrumb">
+          <li>
+            <a >Home</a>
+
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a >Administration</a>
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a  >Projects Administration</a>
+          </li>
+          <li><i class='bx bx-chevron-right' ></i></li>
+          <li>
+            <a class="active" >Permission Management</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+
+  </main>
+  
+  <!-- MAIN -->
+</section>
+
+<div class="publicandprivate">
+  <h2>Permissions</h2>
+<label class="example-margin">
+ <p> Grant and revoke project-level permissions. Permissions can be granted to groups or individual users.
+<br>
+  This project is public. Anyone can browse and see its details.
+</p>
+  </label>
+<br>
+<mat-radio-group class="custom-radio-group" [(ngModel)]="labelPosition">
+  <mat-radio-button class="example-margin" (click)="openDialog()" value="Public">Public</mat-radio-button>
+  <mat-radio-button class="example-margin"  (click)="openDialog()" value="Private">Private</mat-radio-button>
+</mat-radio-group>
+
+
+
+</div>
+<br> 
+
+
+<div class="permissiontable"> 
+
+<mat-tab-group class="custom-tab-group">
+<mat-tab label="Users" >
+  <ng-template matTabContent>
+    <br>
+    <div class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+
+          <div class="col col-2">Name</div>
+          <div class="col col-2">Email</div>
+  
+          <div class="col col-3">Role</div>
+          <div class="col col-4">Action</div>
+
+        </li>
+        <li class="table-row" *ngFor="let user of usersWithRoles">
+
+          <div class="col col-2" data-label="Customer Name">{{user.userDTO.firstname}} {{user.userDTO.lastname}}</div>
+          <div class="col col-2" data-label="Customer Name">{{user.userDTO.email}}</div>
+          <div class="col col-3" data-label="Customer Name">{{user.role}}</div>
+
+
+          <div class="col col-4" data-label="Payment Status">
+            <div class="lemenuaction">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+             
+              
+                  <button mat-menu-item (click)="changeProjectRole(user.role,user.userDTO.id)" *ngIf="user.role == 'VIEWER'" >
+                    <mat-icon>edit</mat-icon>
+                    <span>Change Role to Editor</span>
+                  </button>
+                  <button mat-menu-item (click)="changeProjectRole(user.role,user.userDTO.id)" *ngIf="user.role == 'EDITOR'" >
+                    <mat-icon>edit</mat-icon>
+                    <span>Change Role to Viewer</span>
+                  </button>
+                <button mat-menu-item (click)="userToDeleteInfo(user.userDTO.id) ; openDialog4()">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+          
+             
+              </mat-menu>
+            </div>
+    </div>
+
+ 
+         
+        </li>
+       
+      </ul>
+    </div>
+    <button class="btn2" #add (click)="openDialog22();openCommunDialog()">+</button>
+
+  </ng-template>
+</mat-tab>
+
+<mat-tab label="Teams">
+  <ng-template matTabContent>
+    <br>
+    <div class="container">
+      <ul class="responsive-table">
+        <li class="table-header">
+
+          <div class="col col-2">Team Name</div>
+
+          <div class="col col-3">Role</div>
+          
+          <div class="col col-4">Action</div>
+
+        </li>
+        <li class="table-row" *ngFor="let team of teamsWithRolesDTO">
+          <div class="col col-2" data-label="Customer Name">{{team.TeamDTO.teamName}}</div>
+
+          <div class="col col-3" data-label="Customer Name">{{team.role}}</div>
+
+
+          <div class="col col-4" data-label="Payment Status">
+            <div class="lemenuaction">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+             
+              
+                  <button mat-menu-item *ngIf="team.role ==='VIEWER'" (click)="changeTeamRole(team)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Change Role to Editor</span>
+                  </button>
+                  <button mat-menu-item *ngIf="team.role ==='EDITOR'" (click)="changeTeamRole(team)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Change Role to Viewer</span>
+                  </button>
+                <button mat-menu-item (click)=" openDialog4()">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+          
+             
+              </mat-menu>
+            </div>
+    </div>
+
+        </li>
+       
+      </ul>
+    </div>
+    <button class="btn2" #add (click)="openDialog3();openCommunDialog()">+</button>
+
+  </ng-template> 
+</mat-tab>
+
+</mat-tab-group>
+</div>
+<div class="dialog-container" *ngIf="showDialog">
+  <div class="dialog-content">
+    <h2 class="dialog-title">Permission Confirmation</h2>
+    <p>Are you sure you want to change this project visibility.</p>
+    <div class="dialog-buttons">
+      <button mat-button (click)="updateVisibility()">Yes</button>
+      <button mat-button (click)="closeDialog()">No</button>
+
+    </div>
+  </div>
+</div>
+
+<div class="dialog-container" *ngIf="communDialog" >
+  <div class="dialog-content" >
+    <div *ngIf="showDialog22">
+    <h2 class="dialog-title">Add Access to User</h2>
+    <div class="multiselect-dropdown" style="width:100%">
+      <ng-multiselect-dropdown
+      (click)="getAllUsers()"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedUsers"
+        (onSelect)="getAllUsers()"
+        (onSelectAll)="getAllUsers()"
+        (onDeSelect)="getAllUsers()"
+        (onDeSelectAll)="onInstanceDeSelectAll()"
+
+        >
+      </ng-multiselect-dropdown>
+      <br>
+      <h4>Acces Priviliges</h4>
+      <mat-chip-listbox [(ngModel)]="userRole" >
+        <mat-chip-option  selected>Editor</mat-chip-option>
+        <mat-chip-option>Viewer</mat-chip-option>
+  
+      </mat-chip-listbox>
+
+    <div class="dialog-buttons">
+      <button mat-button (click)="addUserToProject()">Add</button>
+      <button mat-button (click)="closeCommunDialog()">Cancel</button>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="dialog-container" *ngIf="showDialog3">
+  <div class="dialog-content" >
+
+   <h2 class="dialog-title">Add Access to Team</h2>
+  <div class="multiselect-dropdown" style="width:100%">
+    
+    <ng-multiselect-dropdown
+    (click)="getAllTeams()"
+      [settings]="dropdownSettings"
+      [data]="dropdownList2"
+      [(ngModel)]="selectedTeams"
+      (onSelect)="onInstanceSelect() ;getAllTeams()"
+      (onSelectAll)="onInstanceSelectAll();getAllTeams()"
+      (onDeSelect)="onInstanceSelect();getAllTeams()"
+      (onDeSelectAll)="onInstanceDeSelectAll()"
+
+      >
+    </ng-multiselect-dropdown>
+
+    <br>
+    <h4>Acces Priviliges</h4>
+    <mat-chip-listbox [(ngModel)]="teamRole" >
+      <mat-chip-option  selected>Editor</mat-chip-option>
+      <mat-chip-option>Viewer</mat-chip-option>
+
+    </mat-chip-listbox>
+
+  <div class="dialog-buttons">
+    <button mat-button (click)="addTeamToProject()">Add</button>
+    <button mat-button (click)="closeCommunDialog()">Cancel</button>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- 
+<div class="dialog-container" *ngIf="showDialog3 " >
+  <div class="dialog-content" >
+    <h2 class="dialog-title">Add Access to Team</h2>
+    <div class="multiselect-dropdown" style="width:100%">
+      
+      <ng-multiselect-dropdown
+      (click)="getAllTeams()"
+        [settings]="dropdownSettings"
+        [data]="dropdownList2"
+        [(ngModel)]="selectedTeams"
+        (onSelect)="onInstanceSelect() ;getAllTeams()"
+        (onSelectAll)="onInstanceSelectAll();getAllTeams()"
+        (onDeSelect)="onInstanceSelect();getAllTeams()"
+        (onDeSelectAll)="onInstanceDeSelectAll()"
+
+        >
+      </ng-multiselect-dropdown>
+ 
+      <br>
+      <h4>Acces Priviliges</h4>
+      <mat-chip-listbox [(ngModel)]="teamRole" >
+        <mat-chip-option  selected>Editor</mat-chip-option>
+        <mat-chip-option>Viewer</mat-chip-option>
+  
+      </mat-chip-listbox>
+
+    <div class="dialog-buttons">
+      <button mat-button (click)="addTeamToProject()">Add</button>
+      <button mat-button (click)="closeDialog3()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+
+-->
+
+
+
+
+
+
+<!-- CONTENT -->
+<div class="toasts">
+<div class="toast3" id="toast-message3"></div>
+
+<div class="toast4" id="toast-message4"></div>
+<div class="toast2" id="toast-message2"></div>
+<div class="toast5" id="toast-message5"></div>
+<div class="toast6" id="toast-message6"></div>
+
+</div>

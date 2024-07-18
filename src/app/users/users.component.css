@@ -1,0 +1,268 @@
+body {
+    font-family: 'lato', sans-serif;
+}
+.container {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#tabletitle{
+    font-size: 26px;
+    margin: 10px 0;
+    text-align: center;
+    margin-right: 61%;
+    position: relative;
+}
+h2 small {
+    font-size: 0.5em;
+}
+.responsive-table li {
+    border-radius: 10px;
+    padding: 25px 30px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.responsive-table .table-header {
+    background-color: #00ae4e;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.responsive-table .table-row {
+    background-color: #fff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+.responsive-table .col-1 {
+    flex-basis: 10%;
+}
+.responsive-table .col-2 {
+    flex-basis: 40%;
+}
+.responsive-table .col-3 {
+    flex-basis: 25%;
+}
+.responsive-table .col-4 {
+    flex-basis: 25%;
+}
+@media all and (max-width: 767px) {
+    .responsive-table .table-header {
+        display: none;
+   }
+    .responsive-table li {
+        display: block;
+   }
+    .responsive-table .col {
+        flex-basis: 100%;
+   }
+    .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+   }
+    .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+   }
+}
+.lemenuaction{
+    position: fixed;
+    margin-top: -0.9rem;
+}
+.example-button-row button,
+.example-button-row a {
+position: fixed;
+margin-top: -0.9rem;    
+
+}
+
+.example-disabled {
+  display: inline-block;
+}
+#enabled {
+    background-color: #00ae4e;
+    margin-left: 1rem;
+}
+.title {
+    font-size: 26px;
+    margin: 10px 0;
+    text-align: center;
+}
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .dialog-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .dialog-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 23%;
+  }
+
+  
+  .dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .dialog-buttons button {
+    margin-left: 10px;
+  }
+  .dialog2-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  .dialog2-content {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+  .dialog2-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 20%;
+  }
+
+  #selectlist {
+    /* Add your custom styles here */
+    width:100%;
+    height: 40px;
+    margin-left:-1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  #selectlist:focus {
+    outline: none;
+    border-color: #5c6ac4;
+    box-shadow: 0 0 0 4px rgba(92, 106, 196, 0.3);
+  }
+  
+  .mat-form-field .mat-form-field-infix {
+    padding-top: 10px; /* Adjust the top padding as needed */
+  }
+  #bouttonnn{
+    color: #00ae4e;
+    background-color: blue; /* Adjust the underline color as needed */
+
+  }
+
+
+
+
+  .btn-download2 {
+    height: 40px;
+    width: 200px;
+    padding: 0 18px;
+    border-radius: 36px;
+    background: #00ae4e;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 400;
+    margin-left: 72%;
+    margin-top: 1.5rem;
+    position: relative;
+    
+    cursor: pointer;
+  }
+
+  .btn-download2:hover {
+    background-color: #7ccea1;
+  }
+
+  .usertable{
+
+    position: relative;
+    margin-top: -3rem;
+  }
+
+  .dialog0-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .dialog0-content {
+    background-color: #ffffff;
+    padding: 10px;
+    width: 20%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    
+  }
+  
+  .dialog0-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-left: 35%;
+  }
+
+  #teamname {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid red;
+    font-size: 16px;
+    color: rgb(24, 15, 15);
+    padding: 10px;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    width: 85%;
+    margin-left: 5%;
+    }
+    
+    #teamname:focus,
+    #teamname:not(:placeholder-shown) {
+    outline: none;
+    border-bottom-color: #00ae4e;
+    }
+    
+    #teamname:not(:empty) {
+    color: #00ae4e;
+    border-bottom-color: #00ae4e;
+    }
+    .roleedit{
+      margin-left: 5%;
+    }
